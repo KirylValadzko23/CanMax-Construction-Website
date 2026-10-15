@@ -2,45 +2,6 @@
    Carrières page — photo hero, why join us, trades, application form
    ========================================================================== */
 
-/* ---- Hero with the team photo beside the text --------------------------
-   Plain variant of .page-hero: no grid or red stroke, so the photo leads. */
-.page-hero--split::before,
-.page-hero--split::after {
-  content: none;
-}
-
-.page-hero--split .page-hero__layout {
-  display: grid;
-  gap: var(--sp-6);
-  align-items: center;
-  margin-top: var(--sp-6);
-}
-
-@media (min-width: 64rem) {
-  .page-hero--split .page-hero__layout {
-    grid-template-columns: 5fr 7fr;
-    gap: var(--sp-8);
-  }
-}
-
-.page-hero--split .page-hero__content {
-  margin-top: 0;
-}
-
-.page-hero__actions {
-  margin-top: var(--sp-6);
-}
-
-.page-hero__photo {
-  margin: 0;
-}
-
-.page-hero__photo img {
-  width: 100%;
-  height: auto;
-  border: var(--bw-1) solid var(--c-white-12);
-}
-
 /* ---- Why join us (numbered, like the service cards) -------------------- */
 .perks {
   display: grid;

@@ -90,6 +90,96 @@
   color: var(--c-white-70);
 }
 
+.page-hero__actions {
+  margin-top: var(--sp-6);
+}
+
+/* ---- Full-photo variant (e.g. Carrières) --------------------------------
+   The photo fills the block; light shading only behind the text keeps
+   the photo bright. No grid or red stroke, so the photo leads.          */
+.page-hero--photo {
+  display: flex;
+  min-height: min(44rem, calc(100svh - var(--header-h)));
+  padding-block: var(--sp-6) var(--sp-7);
+}
+
+.page-hero--photo::before,
+.page-hero--photo::after {
+  content: none;
+}
+
+.page-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.page-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
+}
+
+/* Phones: shade the lower part, where the text sits */
+.page-hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0.35) 0%,
+    rgb(0 0 0 / 0.15) 35%,
+    rgb(0 0 0 / 0.85) 100%
+  );
+}
+
+/* Larger screens: shade the left side, where the text sits */
+@media (min-width: 48rem) {
+  .page-hero__media::after {
+    background:
+      linear-gradient(0deg, rgb(0 0 0 / 0.5) 0%, transparent 25%),
+      linear-gradient(90deg, rgb(0 0 0 / 0.75) 0%, rgb(0 0 0 / 0.45) 40%, transparent 65%);
+  }
+}
+
+.page-hero--photo .page-hero__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--sp-7);
+}
+
+.page-hero--photo .page-hero__content {
+  max-width: 30rem; /* stays over the left of the photo, off the faces */
+  margin-top: 0;
+  text-shadow: 0 1px 12px rgb(0 0 0 / 0.6);
+}
+
+.page-hero--photo .page-hero__lead,
+.page-hero--photo .breadcrumb ol {
+  color: var(--c-white);
+}
+
+/* Small red text gets lost on a photo: label in white, red bar kept */
+.page-hero--photo .eyebrow {
+  color: var(--c-white);
+}
+
+.page-hero--photo .eyebrow::before {
+  background: var(--c-red);
+}
+
+@media (min-width: 48rem) {
+  .page-hero--photo .page-hero__inner {
+    justify-content: flex-start;
+  }
+
+  .page-hero--photo .page-hero__content {
+    margin-block: auto;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .page-hero__content > * {
     animation: hero-rise 700ms var(--ease-out) both;
