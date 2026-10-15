@@ -1,0 +1,211 @@
+/* ==========================================================================
+   Forms — shared by the job application (Carrières) and, later, the
+   quote request (Soumission). Designed for black sections.
+   Error text is red on black (4.74:1, passes AA).
+   ========================================================================== */
+
+.form {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+.form__row {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+@media (min-width: 40rem) {
+  .form__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---- Fields ------------------------------------------------------------ */
+.field {
+  display: grid;
+  gap: var(--sp-2);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.field label,
+.field legend {
+  padding: 0;
+  font-family: var(--ff-display);
+  font-size: 1.0625rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.field__req {
+  color: var(--c-red);
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field input[type="url"],
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: var(--sp-3) var(--sp-4);
+  background: transparent;
+  border: var(--bw-1) solid var(--c-white-40);
+  border-radius: var(--radius);
+  color: var(--c-white);
+  font-size: 1.0625rem;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--c-white-40);
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: var(--c-white-70);
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  border-color: var(--c-white);
+  outline: var(--bw-2) solid var(--c-red);
+  outline-offset: 2px;
+}
+
+.field [aria-invalid="true"] {
+  border-color: var(--c-red);
+}
+
+.field__hint {
+  font-size: var(--fs-sm);
+  color: var(--c-white-70);
+}
+
+.field__error {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--c-red);
+}
+
+.field__error[hidden] {
+  display: none;
+}
+
+/* ---- "Link OR file" group ---------------------------------------------- */
+.field--group {
+  gap: var(--sp-3);
+  padding: var(--sp-5);
+  border: var(--bw-1) solid var(--c-white-12);
+}
+
+.field--group.is-invalid {
+  border-color: var(--c-red);
+}
+
+.field__sub {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.field__sub label {
+  font-size: var(--fs-sm);
+}
+
+.form__or {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-family: var(--ff-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--c-white-70);
+}
+
+.form__or::before,
+.form__or::after {
+  content: "";
+  flex: 1;
+  height: var(--bw-1);
+  background: var(--c-white-12);
+}
+
+/* ---- File picker: real input hidden, styled label shown ---------------- */
+.file {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+  cursor: pointer;
+}
+
+.file input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.file__btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: var(--sp-2) var(--sp-4);
+  border: var(--bw-1) solid var(--c-white);
+  font-family: var(--ff-display);
+  font-size: 1.0625rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.file:hover .file__btn {
+  background: var(--c-white);
+  color: var(--c-black);
+}
+
+.file:focus-within .file__btn {
+  outline: var(--bw-2) solid var(--c-red);
+  outline-offset: 2px;
+}
+
+.file__name {
+  font-size: var(--fs-sm);
+  color: var(--c-white-70);
+  overflow-wrap: anywhere;
+}
+
+/* ---- Bottom of the form ------------------------------------------------ */
+.form__privacy {
+  font-size: var(--fs-sm);
+  color: var(--c-white-70);
+}
+
+.form__submit {
+  justify-self: start;
+}
+
+@media (max-width: 29.99rem) {
+  .form__submit {
+    justify-self: stretch;
+  }
+}
+
+/* Anti-spam trap: hidden from people, bots fill it in */
+.form__trap {
+  position: absolute;
+  left: -9999px;
+}

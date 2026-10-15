@@ -1,0 +1,150 @@
+/* ==========================================================================
+   Carrières page — photo hero, why join us, trades, application form
+   ========================================================================== */
+
+/* ---- Hero with the team photo beside the text --------------------------
+   Plain variant of .page-hero: no grid or red stroke, so the photo leads. */
+.page-hero--split::before,
+.page-hero--split::after {
+  content: none;
+}
+
+.page-hero--split .page-hero__layout {
+  display: grid;
+  gap: var(--sp-6);
+  align-items: center;
+  margin-top: var(--sp-6);
+}
+
+@media (min-width: 64rem) {
+  .page-hero--split .page-hero__layout {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--sp-8);
+  }
+}
+
+.page-hero--split .page-hero__content {
+  margin-top: 0;
+}
+
+.page-hero__actions {
+  margin-top: var(--sp-6);
+}
+
+.page-hero__photo {
+  margin: 0;
+}
+
+.page-hero__photo img {
+  width: 100%;
+  height: auto;
+  border: var(--bw-1) solid var(--c-white-12);
+}
+
+/* ---- Why join us (numbered, like the service cards) -------------------- */
+.perks {
+  display: grid;
+  gap: var(--sp-6);
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 48rem) {
+  .perks {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.perk {
+  padding-top: var(--sp-5);
+  border-top: var(--bw-2) solid var(--c-black);
+}
+
+.perk__num {
+  font-family: var(--ff-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-caps);
+}
+
+.perk__num::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: var(--sp-2);
+  background: var(--c-red);
+  vertical-align: middle;
+}
+
+.perk__title {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-lg);
+}
+
+.perk__text {
+  margin-top: var(--sp-3);
+  opacity: 0.8;
+}
+
+/* ---- Trades we hire ---------------------------------------------------- */
+.trades {
+  margin-top: var(--sp-8);
+}
+
+.trades__title {
+  font-size: var(--fs-lg);
+}
+
+.trades__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  padding: 0;
+  list-style: none;
+}
+
+.trades__list li {
+  padding: var(--sp-2) var(--sp-4);
+  border: var(--bw-1) solid var(--c-black);
+  font-family: var(--ff-display);
+  font-size: 1.0625rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---- Application section ----------------------------------------------- */
+.apply__grid {
+  display: grid;
+  gap: var(--sp-7);
+}
+
+@media (min-width: 64rem) {
+  .apply__grid {
+    grid-template-columns: 4fr 7fr;
+    gap: var(--sp-8);
+  }
+}
+
+.apply__call {
+  margin-top: var(--sp-6);
+  padding-top: var(--sp-5);
+  border-top: var(--bw-1) solid var(--c-white-12);
+  color: var(--c-white-70);
+}
+
+.apply__call a {
+  display: inline-block;
+  margin-top: var(--sp-2);
+  font-family: var(--ff-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-black);
+  color: var(--c-white);
+  text-decoration: none;
+}
+
+.apply__call a:hover {
+  color: var(--c-red);
+}
