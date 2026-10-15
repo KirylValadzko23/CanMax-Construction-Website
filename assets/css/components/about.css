@@ -2,6 +2,46 @@
    À propos page — story with team photo, tagline, archive clipping, values
    ========================================================================== */
 
+/* ---- Key figures row --------------------------------------------------- */
+.figures {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-5);
+  margin-bottom: clamp(3rem, 7vw, 5rem);
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 48rem) {
+  .figures {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.figure {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: var(--sp-2);
+  padding-top: var(--sp-4);
+  border-top: var(--bw-4) solid var(--c-black);
+}
+
+.figure__num {
+  font-family: var(--ff-display);
+  font-size: clamp(2.75rem, 2rem + 3vw, 4.5rem);
+  font-weight: var(--fw-black);
+  line-height: 0.95;
+}
+
+.figure__label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
 /* ---- Story: text beside the team photo --------------------------------- */
 .story {
   display: grid;
@@ -105,4 +145,60 @@
 .value__text {
   margin-top: var(--sp-3);
   color: var(--c-white-70);
+}
+
+/* ---- Our work: 4 project photos linking to the gallery ----------------- */
+.work-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 64rem) {
+  .work-strip {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.work-strip a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.work-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.work-strip a::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: var(--bw-4);
+  background: var(--c-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.work-strip a:hover img,
+.work-strip a:focus-visible img {
+  transform: scale(1.04);
+}
+
+.work-strip a:hover::after,
+.work-strip a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.work-strip__more {
+  margin-top: var(--sp-6);
+  text-align: center;
 }

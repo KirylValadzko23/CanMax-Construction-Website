@@ -156,10 +156,25 @@
 
     <main id="contenu">
       <!-- ================================================================
-           EN-TÊTE DE PAGE
+           EN-TÊTE DE PAGE — team photo as full background
            ================================================================ -->
-      <section class="page-hero" aria-labelledby="page-titre">
-        <div class="container">
+      <section class="page-hero page-hero--photo" style="--photo-ratio: 2400 / 1383" aria-labelledby="page-titre">
+        <div class="page-hero__media">
+          <picture>
+            <source media="(max-width: 47.99rem)" srcset="../assets/img/hero/carrieres-mobile.jpg" />
+            <img
+              src="../assets/img/hero/carrieres.jpg"
+              width="2400"
+              height="1383"
+              alt="L'équipe de Canmax Construction réunie devant un camion de l'entreprise"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
+        </div>
+        <div class="photo-fade" aria-hidden="true"></div>
+
+        <div class="container page-hero__inner">
           <nav class="breadcrumb" aria-label="Fil d'Ariane">
             <ol>
               <li><a href="../">Accueil</a></li>
@@ -183,6 +198,25 @@
            ================================================================ -->
       <section class="section section--light" aria-labelledby="histoire-titre">
         <div class="container">
+          <ul class="figures" role="list">
+            <li class="figure">
+              <span class="figure__label">Fondée à Montréal</span>
+              <span class="figure__num">1991</span>
+            </li>
+            <li class="figure">
+              <span class="figure__label">Années d'expérience</span>
+              <span class="figure__num">30+</span>
+            </li>
+            <li class="figure">
+              <span class="figure__label">Secteurs : résidentiel, commercial, institutionnel</span>
+              <span class="figure__num">3</span>
+            </li>
+            <li class="figure">
+              <span class="figure__label">Seule équipe pour tout votre projet</span>
+              <span class="figure__num">1</span>
+            </li>
+          </ul>
+
           <div class="section-head">
             <p class="eyebrow">Notre histoire</p>
             <h2 class="section-head__title" id="histoire-titre">Plus de 30 ans à bâtir Montréal.</h2>
@@ -221,14 +255,14 @@
 
             <figure class="story__photo">
               <img
-                src="../assets/img/hero/carrieres-mobile.jpg"
+                src="../assets/img/hero/hero-mobile.jpg"
                 width="1100"
-                height="633"
-                alt="L'équipe de Canmax Construction réunie devant un camion de l'entreprise"
+                height="824"
+                alt="Trois membres de l'équipe Canmax, en harnais de sécurité, consultent des plans sur un chantier de charpente"
                 loading="lazy"
                 decoding="async"
               />
-              <figcaption class="story__caption">L'équipe de Canmax Construction.</figcaption>
+              <figcaption class="story__caption">Notre équipe sur un chantier, harnais de sécurité en place.</figcaption>
             </figure>
           </div>
         </div>
@@ -268,6 +302,47 @@
               </p>
             </li>
           </ul>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           NOTRE TRAVAIL — 4 project photos linking to the gallery
+           ================================================================ -->
+      <section class="section section--light" aria-labelledby="travail-titre">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Notre travail</p>
+            <h2 class="section-head__title" id="travail-titre">Des projets qui parlent pour nous.</h2>
+          </div>
+
+          <ul class="work-strip" role="list">
+            <li>
+              <a href="../nos-realisations/?type=cuisines">
+                <img src="../assets/img/projects/galerie/thumb/projet-003.jpg" width="800" height="533" alt="Cuisine neuve aux armoires en bois clair — voir nos cuisines" loading="lazy" decoding="async" />
+              </a>
+            </li>
+            <li>
+              <a href="../nos-realisations/?type=terrasses">
+                <img src="../assets/img/projects/galerie/thumb/projet-026.jpg" width="800" height="600" alt="Terrasse en cèdre près d'une piscine — voir nos terrasses" loading="lazy" decoding="async" />
+              </a>
+            </li>
+            <li>
+              <a href="../nos-realisations/?type=salles-de-bain">
+                <img src="../assets/img/projects/galerie/thumb/projet-064.jpg" width="600" height="800" alt="Salle de bain avec céramique bleue — voir nos salles de bain" loading="lazy" decoding="async" />
+              </a>
+            </li>
+            <li>
+              <a href="../nos-realisations/?type=interieurs">
+                <img src="../assets/img/projects/galerie/thumb/projet-115.jpg" width="600" height="800" alt="Salon rénové avec sofa gris et table en bois — voir nos aménagements intérieurs" loading="lazy" decoding="async" />
+              </a>
+            </li>
+          </ul>
+
+          <div class="work-strip__more">
+            <a class="btn btn--outline-dark" href="../nos-realisations/">
+              Voir toutes nos réalisations <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
         </div>
       </section>
 
