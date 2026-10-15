@@ -73,7 +73,7 @@
       limit = pageSize;
       var total = render();
       if (status) {
-        status.textContent = total + (total > 1 ? " projets" : " projet");
+        status.textContent = total + (total > 1 ? " photos" : " photo");
       }
     });
   });
@@ -106,6 +106,13 @@
   var current = [];
   var index = 0;
 
+  // Filter names double as captions: data-category "cuisines" -> "Cuisines".
+  var labels = {};
+  filters.forEach(function (button) {
+    var label = button.querySelector(".filter__label");
+    if (label) labels[button.getAttribute("data-filter")] = label.textContent;
+  });
+
   function openable() {
     return projects.filter(function (p) {
       return !p.hidden && p.querySelector("[data-lightbox]");
@@ -133,7 +140,11 @@
       stage.appendChild(media.querySelector(".ph").cloneNode(true));
     }
 
-    category.textContent = textOf(project, ".project__cat", "Nos réalisations");
+    category.textContent = textOf(
+      project,
+      ".project__cat",
+      labels[project.getAttribute("data-category")] || "Nos réalisations"
+    );
     title.textContent = textOf(project, ".project__title", "Canmax Construction");
     counter.textContent = index + 1 + " / " + current.length;
   }
