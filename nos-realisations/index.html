@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="../assets/css/components/page-hero.css" />
     <link rel="stylesheet" href="../assets/css/components/gallery.css" />
     <link rel="stylesheet" href="../assets/css/components/cta-band.css" />
+    <link rel="stylesheet" href="../assets/css/components/footer.css" />
     <link rel="stylesheet" href="../assets/css/components/tape-scroll.css" />
 
     <script src="../assets/js/header.js" defer></script>
@@ -1288,6 +1289,66 @@
         </div>
       </section>
     </main>
+
+    <!-- ================================================================
+         PIED DE PAGE (footer) — same block is copied onto every page
+         ================================================================ -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__top">
+          <div>
+            <a class="site-footer__logo" href="../">
+              <img src="../assets/img/brand/logo.png" width="800" height="172" alt="Canmax Construction — accueil" loading="lazy" />
+            </a>
+            <p class="site-footer__about">
+              Entrepreneur général familial à Montréal depuis 1991. Construction et rénovation résidentielles,
+              commerciales et institutionnelles.
+            </p>
+            <ul class="social" role="list">
+              <li>
+                <a href="https://www.facebook.com/canmaxconstruction/" target="_blank" rel="noopener">
+                  <svg aria-hidden="true"><use href="#i-facebook" /></svg>
+                  <span class="visually-hidden">Canmax Construction sur Facebook (nouvel onglet)</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://ca.linkedin.com/company/canmax-construction" target="_blank" rel="noopener">
+                  <svg aria-hidden="true"><use href="#i-linkedin" /></svg>
+                  <span class="visually-hidden">Canmax Construction sur LinkedIn (nouvel onglet)</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <nav aria-labelledby="footer-nav-titre">
+            <h2 class="site-footer__title" id="footer-nav-titre">Navigation</h2>
+            <ul class="site-footer__list" role="list">
+              <li><a href="../">Accueil</a></li>
+              <li><a href="../services/">Services</a></li>
+              <li><a href="./" aria-current="page">Nos réalisations</a></li>
+              <li><a href="../a-propos/">À propos</a></li>
+              <li><a href="../faites-partie-de-la-famille/">Carrières</a></li>
+              <li><a href="../soumission/">Soumission sans frais</a></li>
+            </ul>
+          </nav>
+
+          <div>
+            <h2 class="site-footer__title">Nous joindre</h2>
+            <ul class="site-footer__list" role="list">
+              <li><a class="site-footer__phone" href="tel:+15149373400">514 937-3400</a></li>
+              <li>
+                <address>665, rue Charlevoix<br />Montréal (Québec) H3K 2X8</address>
+              </li>
+              <li class="site-footer__muted">Lundi au vendredi, 9 h à 17 h<br />Samedi et dimanche : fermé</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="site-footer__bottom">
+          <p>© 2026 par Canmax Construction. Tous droits réservés.</p>
+        </div>
+      </div>
+    </footer>
 
     <!-- VISIONNEUSE (photo viewer) — opened by the gallery -->
     <dialog class="lightbox" id="visionneuse" aria-labelledby="visionneuse-titre">

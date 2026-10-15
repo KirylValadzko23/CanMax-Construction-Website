@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Footer — logo, social links, navigation, contact, copyright
+   ========================================================================== */
+
+.site-footer {
+  background: var(--c-black);
+  color: var(--c-white);
+  border-top: var(--bw-1) solid var(--c-white-12);
+}
+
+.site-footer__top {
+  display: grid;
+  gap: var(--sp-7);
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+@media (min-width: 48rem) {
+  .site-footer__top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .site-footer__top {
+    grid-template-columns: 5fr 3fr 4fr;
+  }
+}
+
+/* Brand column */
+.site-footer__logo img {
+  width: auto;
+  height: 2.5rem;
+}
+
+.site-footer__about {
+  max-width: 24rem;
+  margin-top: var(--sp-5);
+  color: var(--c-white-70);
+}
+
+.site-footer .social {
+  margin-top: var(--sp-5);
+}
+
+/* Column titles */
+.site-footer__title {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-caps);
+  color: var(--c-white-70);
+}
+
+.site-footer__list {
+  display: grid;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__list a {
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.site-footer__list a:hover {
+  color: var(--c-red);
+}
+
+.site-footer__phone {
+  font-family: var(--ff-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-black);
+  letter-spacing: 0.02em;
+}
+
+.site-footer address {
+  font-style: normal;
+}
+
+.site-footer__muted {
+  color: var(--c-white-70);
+}
+
+/* Bottom bar */
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding-block: var(--sp-5);
+  border-top: var(--bw-1) solid var(--c-white-12);
+  font-size: var(--fs-sm);
+  color: var(--c-white-70);
+}
