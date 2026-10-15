@@ -77,7 +77,28 @@
   }
 }
 
-.project[hidden] {
+/* Photo-only grid (Nos réalisations page): more columns, tighter gaps */
+.projects--photos {
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-2);
+}
+
+@media (min-width: 48rem) {
+  .projects--photos {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-3);
+  }
+}
+
+@media (min-width: 80rem) {
+  .projects--photos {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.project[hidden],
+.filter[hidden],
+.filters[hidden] {
   display: none;
 }
 

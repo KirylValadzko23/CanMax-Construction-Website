@@ -9,3 +9,6 @@ desktop.ini
 
 # Personal Claude Code settings (the preview server files are kept)
 .claude/settings.local.json
+
+# Photo sorting sheets (working files, not part of the site)
+_classement/

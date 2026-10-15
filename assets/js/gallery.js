@@ -1,8 +1,10 @@
 /* ==========================================================================
    Gallery behaviour
    1. Filter buttons show/hide projects by sector (and count them).
-   2. Clicking a project opens it full screen; arrows move between the
-      projects currently shown by the filter.
+      Buttons with no matching projects are hidden.
+   2. "Voir plus" reveals photos a page at a time (data-page-size).
+   3. Clicking a project opens it full screen; arrows move between the
+      projects currently shown.
    ========================================================================== */
 (function () {
   "use strict";
@@ -12,37 +14,88 @@
 
   var projects = Array.prototype.slice.call(gallery.querySelectorAll("[data-category]"));
   var filters = Array.prototype.slice.call(gallery.querySelectorAll("[data-filter]"));
+  var filterGroup = gallery.querySelector(".filters");
   var status = gallery.querySelector("[data-gallery-status]");
+  var moreButton = gallery.querySelector("[data-more]");
+  var moreCount = gallery.querySelector("[data-more-count]");
+  var pageSize = parseInt(gallery.getAttribute("data-page-size"), 10) || Infinity;
 
-  /* ---- 1. Filters ------------------------------------------------------ */
+  var currentFilter = "tous";
+  var limit = pageSize;
+
   function matches(project, filter) {
     if (filter === "tous") return true;
     if (filter === "avant-apres") return project.hasAttribute("data-before-after");
     return project.getAttribute("data-category") === filter;
   }
 
+  function matching(filter) {
+    return projects.filter(function (p) {
+      return matches(p, filter);
+    });
+  }
+
+  /* ---- Show the right projects ----------------------------------------- */
+  function render() {
+    var list = matching(currentFilter);
+    projects.forEach(function (p) {
+      p.hidden = true;
+    });
+    list.forEach(function (p, i) {
+      p.hidden = i >= limit;
+    });
+
+    var remaining = list.length - Math.min(limit, list.length);
+    if (moreButton) {
+      moreButton.hidden = remaining <= 0;
+      if (moreCount) moreCount.textContent = "(" + remaining + ")";
+    }
+    return list.length;
+  }
+
+  /* ---- 1. Filters ------------------------------------------------------ */
+  var visibleFilters = 0;
   filters.forEach(function (button) {
     var filter = button.getAttribute("data-filter");
-    var count = projects.filter(function (p) {
-      return matches(p, filter);
-    }).length;
+    var count = matching(filter).length;
     var countEl = button.querySelector(".filter__count");
     if (countEl) countEl.textContent = count;
+
+    // Hide sectors that have no projects yet (except "Tous").
+    button.hidden = count === 0 && filter !== "tous";
+    if (!button.hidden) visibleFilters++;
 
     button.addEventListener("click", function () {
       filters.forEach(function (b) {
         b.setAttribute("aria-pressed", String(b === button));
       });
-      projects.forEach(function (p) {
-        p.hidden = !matches(p, filter);
-      });
+      currentFilter = filter;
+      limit = pageSize;
+      var total = render();
       if (status) {
-        status.textContent = count + (count > 1 ? " projets affichés" : " projet affiché");
+        status.textContent = total + (total > 1 ? " projets" : " projet");
       }
     });
   });
 
-  /* ---- 2. Photo viewer ------------------------------------------------- */
+  // A lone "Tous" button is pointless, so hide the whole row.
+  if (filterGroup && visibleFilters <= 1) filterGroup.hidden = true;
+
+  /* ---- 2. Voir plus ------------------------------------------------------ */
+  if (moreButton) {
+    moreButton.addEventListener("click", function () {
+      var firstNew = matching(currentFilter)[limit];
+      limit += pageSize;
+      render();
+      // Move keyboard focus to the first newly shown photo.
+      var focusTarget = firstNew && firstNew.querySelector("button, a, input");
+      if (focusTarget) focusTarget.focus({ preventScroll: true });
+    });
+  }
+
+  render();
+
+  /* ---- 3. Photo viewer ------------------------------------------------- */
   var dialog = document.getElementById("visionneuse");
   if (!dialog || typeof dialog.showModal !== "function") return;
 
@@ -57,6 +110,11 @@
     return projects.filter(function (p) {
       return !p.hidden && p.querySelector("[data-lightbox]");
     });
+  }
+
+  function textOf(project, selector, fallback) {
+    var el = project.querySelector(selector);
+    return el ? el.textContent : fallback;
   }
 
   function show(i) {
@@ -75,8 +133,8 @@
       stage.appendChild(media.querySelector(".ph").cloneNode(true));
     }
 
-    category.textContent = project.querySelector(".project__cat").textContent;
-    title.textContent = project.querySelector(".project__title").textContent;
+    category.textContent = textOf(project, ".project__cat", "Nos réalisations");
+    title.textContent = textOf(project, ".project__title", "Canmax Construction");
     counter.textContent = index + 1 + " / " + current.length;
   }
 
