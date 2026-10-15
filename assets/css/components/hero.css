@@ -1,7 +1,7 @@
 /* ==========================================================================
    Hero — opening section of the home page
-   Layers (back to front): photo or blueprint grid → dark overlay →
-   the logo's X strokes → text → ruler and key figures.
+   Layers (back to front): crew photo → dark overlay → text →
+   ruler and key figures.
    ========================================================================== */
 
 .hero {
@@ -26,90 +26,44 @@
   z-index: -2;
 }
 
-/* Real project photo — see the comment in index.html to switch it on */
+/* Crew photo. Slightly desaturated so the sky and insulation colours
+   don't fight the black / white / red brand palette. */
 .hero__photo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 65% 40%;
+  filter: grayscale(0.3) contrast(1.05);
 }
 
-/* Dark overlay keeps the text readable on top of any photo */
+/* Dark overlay keeps the white text readable:
+   phones darken top-to-bottom, larger screens darken the left side. */
 .hero__media::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    90deg,
-    var(--c-black) 0%,
-    var(--c-black-85) 40%,
-    var(--c-black-12) 100%
+    180deg,
+    rgb(0 0 0 / 0.45) 0%,
+    rgb(0 0 0 / 0.8) 55%,
+    var(--c-black) 100%
   );
 }
 
-/* Blueprint grid, fading out toward the edges */
-.hero__grid {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background-image:
-    linear-gradient(var(--c-white-06) 1px, transparent 1px),
-    linear-gradient(90deg, var(--c-white-06) 1px, transparent 1px);
-  background-size: 4rem 4rem;
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 70% 40%, #000 20%, transparent 75%);
-  mask-image: radial-gradient(ellipse 80% 70% at 70% 40%, #000 20%, transparent 75%);
-}
-
-/* ---- The X strokes from the logo --------------------------------------
-   skewX keeps the top and bottom cuts horizontal, like the real logo.   */
-.hero__x {
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  bottom: 0;
-  right: -38vw;
-  width: 95vw;
-  opacity: 0.3;
-  pointer-events: none;
-}
-
 @media (min-width: 48rem) {
-  .hero__x {
-    right: -22vw;
-    width: 70vw;
-    opacity: 0.45;
+  .hero__media::after {
+    background:
+      linear-gradient(0deg, var(--c-black) 0%, transparent 30%),
+      linear-gradient(
+        90deg,
+        var(--c-black) 0%,
+        var(--c-black-85) 35%,
+        rgb(0 0 0 / 0.4) 70%,
+        rgb(0 0 0 / 0.2) 100%
+      );
   }
-}
-
-@media (min-width: 64rem) {
-  .hero__x {
-    right: -6vw;
-    width: min(50vw, 48rem);
-    opacity: 1;
-  }
-}
-
-.hero__x span {
-  position: absolute;
-  top: -10%;
-  left: 38%;
-  width: 24%;
-  height: 120%;
-}
-
-/* "\" stroke: solid red with the soft shading seen in the logo */
-.hero__x span:first-child {
-  background:
-    linear-gradient(90deg, rgb(0 0 0 / 0.35), transparent 45%),
-    var(--c-red);
-  transform: skewX(var(--diagonal));
-}
-
-/* "/" stroke: an outline ghost, so the red one stays the hero */
-.hero__x span:last-child {
-  border: var(--bw-2) solid var(--c-white-12);
-  transform: skewX(calc(var(--diagonal) * -1));
 }
 
 /* ---- Text ---------------------------------------------------------------- */
@@ -256,12 +210,9 @@
     animation-delay: 320ms;
   }
 
-  .hero__x span {
-    animation: hero-draw 1000ms var(--ease-out) both;
-  }
-
-  .hero__x span:last-child {
-    animation-delay: 200ms;
+  /* Slow settle-in of the photo */
+  .hero__photo {
+    animation: hero-settle 6s var(--ease-out) both;
   }
 }
 
@@ -272,11 +223,8 @@
   }
 }
 
-@keyframes hero-draw {
+@keyframes hero-settle {
   from {
-    clip-path: inset(0 0 100% 0);
-  }
-  to {
-    clip-path: inset(0);
+    transform: scale(1.06);
   }
 }

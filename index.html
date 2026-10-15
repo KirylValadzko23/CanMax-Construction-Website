@@ -197,15 +197,22 @@
            HÉROS (hero) — first thing visitors see
            ================================================================ -->
       <section class="hero" aria-labelledby="hero-titre">
+        <!-- Photo de l'équipe Canmax sur un chantier (même photo que l'ancien site).
+             Pour la changer, remplacer assets/img/hero/hero.jpg et hero-mobile.jpg. -->
         <div class="hero__media" aria-hidden="true">
-          <!-- PHOTO : déposez une photo de chantier dans assets/img/hero/hero.jpg
-               (1920 × 1080 environ), puis retirez les marques de commentaire :
-          <img class="hero__photo" src="assets/img/hero/hero.jpg" alt="" width="1920" height="1080" fetchpriority="high" />
-          -->
-          <div class="hero__grid"></div>
+          <picture>
+            <source media="(max-width: 47.99rem)" srcset="assets/img/hero/hero-mobile.jpg" />
+            <img
+              class="hero__photo"
+              src="assets/img/hero/hero.jpg"
+              alt=""
+              width="2400"
+              height="1800"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
         </div>
-
-        <div class="hero__x" aria-hidden="true"><span></span><span></span></div>
 
         <div class="container hero__inner">
           <div class="hero__content">
