@@ -35,12 +35,21 @@
   // Purely visual: keyboard and screen-reader users scroll the page as usual.
   tape.setAttribute("aria-hidden", "true");
 
+  // The sliding part: ruler layers, position marker and the metal tip.
+  var body = document.createElement("div");
+  body.className = "tape__body";
+
   var cursor = document.createElement("div");
   cursor.className = "tape__cursor";
 
-  tape.appendChild(buildRuler("tape__track"));
-  tape.appendChild(buildRuler("tape__blade"));
-  tape.appendChild(cursor);
+  var tip = document.createElement("div");
+  tip.className = "tape__tip";
+
+  body.appendChild(buildRuler("tape__track"));
+  body.appendChild(buildRuler("tape__blade"));
+  body.appendChild(cursor);
+  body.appendChild(tip);
+  tape.appendChild(body);
   document.body.appendChild(tape);
   root.classList.add("has-tape");
 
@@ -123,7 +132,7 @@
 
   /* ---- Click / drag to jump ------------------------------------------- */
   function jumpTo(clientY) {
-    var rect = tape.getBoundingClientRect();
+    var rect = body.getBoundingClientRect();
     var ratio = Math.min(1, Math.max(0, (clientY - rect.top) / rect.height));
     window.scrollTo({ top: ratio * maxScroll(), behavior: "instant" });
   }
