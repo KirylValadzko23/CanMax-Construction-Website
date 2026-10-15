@@ -34,9 +34,12 @@
     <link rel="stylesheet" href="assets/css/components/header.css" />
     <link rel="stylesheet" href="assets/css/components/hero.css" />
     <link rel="stylesheet" href="assets/css/components/services.css" />
+    <link rel="stylesheet" href="assets/css/components/gallery.css" />
     <link rel="stylesheet" href="assets/css/components/tape-scroll.css" />
 
     <script src="assets/js/header.js" defer></script>
+    <script src="assets/js/gallery.js" defer></script>
+    <script src="assets/js/before-after.js" defer></script>
     <script src="assets/js/tape-scroll.js" defer></script>
   </head>
 
@@ -74,6 +77,21 @@
           <path d="M10 20v16M19 20v16M29 20v16M38 20v16" />
           <path d="M6 36h36M4 42h40" />
         </g>
+      </symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7" />
+      </symbol>
+      <symbol id="i-arrow-left" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" d="M20 12H4m6-6-6 6 6 6" />
+      </symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" d="M4 12h16m-6-6 6 6-6 6" />
+      </symbol>
+      <symbol id="i-arrows-lr" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" d="M9 6 3 12l6 6M15 6l6 6-6 6" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" d="M5 5l14 14M19 5 5 19" />
       </symbol>
       <symbol id="i-facebook" viewBox="0 0 24 24">
         <path
@@ -309,7 +327,216 @@
           </div>
         </div>
       </section>
+
+      <!-- ================================================================
+           NOS RÉALISATIONS — project gallery
+           PHOTOS : chaque « Photo à venir » sera remplacée par une vraie
+           photo. Exemple pour un projet :
+             <img src="assets/img/projects/residentiel/nom-du-projet.jpg"
+                  alt="Description de la photo" loading="lazy" />
+           ================================================================ -->
+      <section class="section gallery" id="realisations" aria-labelledby="realisations-titre" data-gallery>
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Nos réalisations</p>
+            <h2 class="section-head__title" id="realisations-titre">Le travail parle de lui-même.</h2>
+            <p class="section-head__lead">
+              Un aperçu de nos projets résidentiels, commerciaux et institutionnels à Montréal.
+            </p>
+          </div>
+
+          <div class="filters" role="group" aria-label="Filtrer les projets">
+            <button class="filter" type="button" data-filter="tous" aria-pressed="true">
+              Tous <span class="filter__count"></span>
+            </button>
+            <button class="filter" type="button" data-filter="residentiel" aria-pressed="false">
+              Résidentiel <span class="filter__count"></span>
+            </button>
+            <button class="filter" type="button" data-filter="commercial" aria-pressed="false">
+              Commercial <span class="filter__count"></span>
+            </button>
+            <button class="filter" type="button" data-filter="institutionnel" aria-pressed="false">
+              Institutionnel <span class="filter__count"></span>
+            </button>
+            <button class="filter" type="button" data-filter="avant-apres" aria-pressed="false">
+              Avant / Après <span class="filter__count"></span>
+            </button>
+          </div>
+          <p class="visually-hidden" aria-live="polite" data-gallery-status></p>
+
+          <ul class="projects" role="list">
+            <!-- 1 · Avant / après résidentiel -->
+            <li class="project project--wide" data-category="residentiel" data-before-after>
+              <div class="ba" data-ba>
+                <div class="ba__layer ba__before">
+                  <span class="ph ph--before"><svg aria-hidden="true"><use href="#i-house" /></svg></span>
+                  <span class="ba__tag">Avant</span>
+                </div>
+                <div class="ba__layer ba__after">
+                  <span class="ph ph--after"><svg aria-hidden="true"><use href="#i-house" /></svg></span>
+                  <span class="ba__tag">Après</span>
+                </div>
+                <div class="ba__handle" aria-hidden="true">
+                  <span class="ba__knob"><svg><use href="#i-arrows-lr" /></svg></span>
+                </div>
+                <input
+                  class="ba__range"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="50"
+                  aria-label="Comparer avant et après : projet résidentiel"
+                />
+              </div>
+              <div class="project__info">
+                <span class="project__cat">Résidentiel · Avant / Après</span>
+                <span class="project__title">Projet résidentiel</span>
+                <span class="project__place todo">Titre et lieu à confirmer</span>
+              </div>
+            </li>
+
+            <!-- 2 · Résidentiel -->
+            <li class="project" data-category="residentiel">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <span class="ph"><svg aria-hidden="true"><use href="#i-house" /></svg><span class="ph__label">Photo à venir</span></span>
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+                <span class="project__info">
+                  <span class="project__cat">Résidentiel</span>
+                  <span class="project__title">Projet résidentiel</span>
+                  <span class="project__place todo">Titre et lieu à confirmer</span>
+                </span>
+              </button>
+            </li>
+
+            <!-- 3 · Commercial -->
+            <li class="project" data-category="commercial">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <span class="ph"><svg aria-hidden="true"><use href="#i-building" /></svg><span class="ph__label">Photo à venir</span></span>
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+                <span class="project__info">
+                  <span class="project__cat">Commercial</span>
+                  <span class="project__title">Projet commercial</span>
+                  <span class="project__place todo">Titre et lieu à confirmer</span>
+                </span>
+              </button>
+            </li>
+
+            <!-- 4 · Institutionnel -->
+            <li class="project" data-category="institutionnel">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <span class="ph"><svg aria-hidden="true"><use href="#i-institution" /></svg><span class="ph__label">Photo à venir</span></span>
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+                <span class="project__info">
+                  <span class="project__cat">Institutionnel</span>
+                  <span class="project__title">Projet institutionnel</span>
+                  <span class="project__place todo">Titre et lieu à confirmer</span>
+                </span>
+              </button>
+            </li>
+
+            <!-- 5 · Résidentiel -->
+            <li class="project" data-category="residentiel">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <span class="ph"><svg aria-hidden="true"><use href="#i-house" /></svg><span class="ph__label">Photo à venir</span></span>
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+                <span class="project__info">
+                  <span class="project__cat">Résidentiel</span>
+                  <span class="project__title">Projet résidentiel</span>
+                  <span class="project__place todo">Titre et lieu à confirmer</span>
+                </span>
+              </button>
+            </li>
+
+            <!-- 6 · Avant / après commercial -->
+            <li class="project project--wide" data-category="commercial" data-before-after>
+              <div class="ba" data-ba>
+                <div class="ba__layer ba__before">
+                  <span class="ph ph--before"><svg aria-hidden="true"><use href="#i-building" /></svg></span>
+                  <span class="ba__tag">Avant</span>
+                </div>
+                <div class="ba__layer ba__after">
+                  <span class="ph ph--after"><svg aria-hidden="true"><use href="#i-building" /></svg></span>
+                  <span class="ba__tag">Après</span>
+                </div>
+                <div class="ba__handle" aria-hidden="true">
+                  <span class="ba__knob"><svg><use href="#i-arrows-lr" /></svg></span>
+                </div>
+                <input
+                  class="ba__range"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="50"
+                  aria-label="Comparer avant et après : projet commercial"
+                />
+              </div>
+              <div class="project__info">
+                <span class="project__cat">Commercial · Avant / Après</span>
+                <span class="project__title">Projet commercial</span>
+                <span class="project__place todo">Titre et lieu à confirmer</span>
+              </div>
+            </li>
+
+            <!-- 7 · Commercial -->
+            <li class="project" data-category="commercial">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <span class="ph"><svg aria-hidden="true"><use href="#i-building" /></svg><span class="ph__label">Photo à venir</span></span>
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+                <span class="project__info">
+                  <span class="project__cat">Commercial</span>
+                  <span class="project__title">Projet commercial</span>
+                  <span class="project__place todo">Titre et lieu à confirmer</span>
+                </span>
+              </button>
+            </li>
+          </ul>
+
+          <p class="ba__hint">Glissez la ligne rouge des photos « Avant / Après » pour comparer.</p>
+
+          <div class="gallery__more">
+            <a class="btn btn--outline" href="nos-realisations/">
+              Voir toutes nos réalisations <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <!-- VISIONNEUSE (photo viewer) — opened by the gallery -->
+    <dialog class="lightbox" id="visionneuse" aria-labelledby="visionneuse-titre">
+      <div class="lightbox__bar">
+        <p class="lightbox__count" data-lb-count></p>
+        <button class="lightbox__btn" type="button" data-lb-close>
+          <svg aria-hidden="true"><use href="#i-close" /></svg>
+          <span class="visually-hidden">Fermer</span>
+        </button>
+      </div>
+      <div class="lightbox__stage" data-lb-stage></div>
+      <div class="lightbox__footer">
+        <button class="lightbox__btn" type="button" data-lb-prev>
+          <svg aria-hidden="true"><use href="#i-arrow-left" /></svg>
+          <span class="visually-hidden">Projet précédent</span>
+        </button>
+        <div class="lightbox__caption">
+          <p class="project__cat" data-lb-cat></p>
+          <h2 class="lightbox__title" id="visionneuse-titre" data-lb-title></h2>
+        </div>
+        <button class="lightbox__btn" type="button" data-lb-next>
+          <svg aria-hidden="true"><use href="#i-arrow-right" /></svg>
+          <span class="visually-hidden">Projet suivant</span>
+        </button>
+      </div>
+    </dialog>
 
     <!-- BARRE D'APPEL (téléphones seulement) -->
     <div class="callbar">
