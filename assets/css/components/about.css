@@ -147,58 +147,76 @@
   color: var(--c-white-70);
 }
 
-/* ---- Our work: 4 project photos linking to the gallery ----------------- */
-.work-strip {
+/* ---- Top photo: keep the van and house in view ------------------------- */
+.page-hero--about .page-hero__media img {
+  object-position: 50% 65%;
+}
+
+/* ---- Facebook posts: photo, date, the post's own words ----------------- */
+.fb-posts {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-3);
+  gap: var(--sp-5);
   padding: 0;
   list-style: none;
 }
 
+@media (min-width: 40rem) {
+  .fb-posts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (min-width: 64rem) {
-  .work-strip {
+  .fb-posts {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-.work-strip a {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  aspect-ratio: 1;
+.fb-post {
+  display: flex;
+  flex-direction: column;
+  border: var(--bw-1) solid var(--c-black-12);
+  background: var(--c-white);
 }
 
-.work-strip img {
+.fb-post img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
-  transition: transform var(--dur-slow) var(--ease-out);
 }
 
-.work-strip a::after {
+.fb-post__body {
+  padding: var(--sp-4) var(--sp-4) var(--sp-5);
+}
+
+.fb-post__date {
+  font-family: var(--ff-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.fb-post__date::before {
   content: "";
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  height: var(--bw-4);
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: var(--sp-2);
   background: var(--c-red);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--dur-slow) var(--ease-out);
+  vertical-align: middle;
 }
 
-.work-strip a:hover img,
-.work-strip a:focus-visible img {
-  transform: scale(1.04);
+.fb-post__text {
+  margin-top: var(--sp-3);
+  opacity: 0.85;
 }
 
-.work-strip a:hover::after,
-.work-strip a:focus-visible::after {
-  transform: scaleX(1);
-}
-
-.work-strip__more {
+.fb-posts__more {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-3);
   margin-top: var(--sp-6);
-  text-align: center;
 }
