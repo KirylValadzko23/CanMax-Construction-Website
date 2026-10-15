@@ -1,0 +1,112 @@
+/* ==========================================================================
+   Page hero — compact opening block for inner pages
+   (Nos réalisations, Services, À propos…). Same blueprint grid and red
+   X stroke as the home hero, at a smaller scale.
+   ========================================================================== */
+
+.page-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(3rem, 7vw, 6rem) clamp(2.5rem, 5vw, 4.5rem);
+  border-bottom: var(--bw-1) solid var(--c-white-12);
+}
+
+/* Blueprint grid */
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(var(--c-white-06) 1px, transparent 1px),
+    linear-gradient(90deg, var(--c-white-06) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  -webkit-mask-image: radial-gradient(ellipse 70% 90% at 80% 30%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 90% at 80% 30%, #000 20%, transparent 75%);
+}
+
+/* Red stroke from the logo's X */
+.page-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -20%;
+  bottom: -20%;
+  right: 6%;
+  width: clamp(3rem, 9vw, 8rem);
+  background:
+    linear-gradient(90deg, rgb(0 0 0 / 0.35), transparent 45%),
+    var(--c-red);
+  transform: skewX(var(--diagonal));
+  opacity: 0.35;
+}
+
+@media (min-width: 64rem) {
+  .page-hero::after {
+    opacity: 1;
+  }
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-sm);
+  color: var(--c-white-70);
+}
+
+.breadcrumb li + li::before {
+  content: "/";
+  margin-right: var(--sp-2);
+  color: var(--c-white-40);
+}
+
+.breadcrumb a {
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--c-white);
+  text-decoration: underline;
+}
+
+.page-hero__content {
+  max-width: 44rem;
+  margin-top: var(--sp-6);
+}
+
+.page-hero__title {
+  margin-top: var(--sp-4);
+  font-size: clamp(2.75rem, 1.8rem + 4vw, 5rem);
+}
+
+.page-hero__lead {
+  max-width: 36rem;
+  margin-top: var(--sp-5);
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
+  color: var(--c-white-70);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-hero__content > * {
+    animation: hero-rise 700ms var(--ease-out) both;
+  }
+
+  .page-hero__content > :nth-child(2) {
+    animation-delay: 80ms;
+  }
+
+  .page-hero__content > :nth-child(3) {
+    animation-delay: 160ms;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+}

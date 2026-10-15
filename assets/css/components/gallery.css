@@ -8,6 +8,11 @@
   margin-bottom: var(--sp-6);
 }
 
+/* On the Nos réalisations page the title block sits right above */
+.page-hero + .gallery {
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
 /* ---- Filter buttons --------------------------------------------------- */
 .filters {
   display: flex;
@@ -94,6 +99,8 @@
   display: block;
   width: 100%;
   text-align: left;
+  color: inherit;
+  text-decoration: none;
 }
 
 .project__media {

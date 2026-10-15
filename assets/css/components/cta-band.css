@@ -1,0 +1,77 @@
+/* ==========================================================================
+   CTA band — red closing block that pushes visitors to call.
+   White text on red is 4.43:1, so every line here is "large text"
+   (24px+ or 19px+ bold) to meet WCAG AA.
+   ========================================================================== */
+
+.cta-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(3rem, 6vw, 5rem);
+  background: var(--c-red);
+  color: var(--c-white);
+}
+
+/* Faint black X strokes in the background */
+.cta-band::before,
+.cta-band::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -30%;
+  bottom: -30%;
+  right: 10%;
+  width: clamp(3rem, 8vw, 7rem);
+  background: rgb(0 0 0 / 0.12);
+  transform: skewX(var(--diagonal));
+}
+
+.cta-band::after {
+  right: 22%;
+  transform: skewX(calc(var(--diagonal) * -1));
+}
+
+.cta-band__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-6);
+}
+
+.cta-band__title {
+  font-size: var(--fs-2xl);
+  max-width: 18ch;
+}
+
+.cta-band__text {
+  margin-top: var(--sp-3);
+  font-size: 1.1875rem;
+  font-weight: var(--fw-semibold);
+}
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+/* Buttons on red: solid black, and white outline */
+.btn--black {
+  --btn-bg: var(--c-black);
+  --btn-fg: var(--c-white);
+  --btn-border: var(--c-black);
+}
+
+.btn--black:hover {
+  --btn-bg: var(--c-white);
+  --btn-fg: var(--c-black);
+  --btn-border: var(--c-white);
+}
+
+@media (max-width: 29.99rem) {
+  .cta-band__actions .btn {
+    width: 100%;
+  }
+}
