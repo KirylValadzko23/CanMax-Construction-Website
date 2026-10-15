@@ -1,16 +1,19 @@
 /* ==========================================================================
    Hero — opening section of the home page
-   Layers (back to front): crew photo → dark overlay → text →
-   ruler and key figures.
+   Layers (back to front): crew photo → dark overlay → fade to white →
+   text and key figures.
    ========================================================================== */
 
 .hero {
+  --fade: clamp(4rem, 9vw, 8rem); /* height of the fade into the white section */
+
   position: relative;
   isolation: isolate;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   min-height: calc(100svh - var(--header-h));
+  padding-bottom: var(--fade); /* empty space for the fade, under the figures */
 }
 
 @media (max-width: 47.99rem) {
@@ -48,12 +51,15 @@
     rgb(0 0 0 / 0.55) 50%,
     rgb(0 0 0 / 0.8) 100%
   );
+  /* The shading melts away over the fade, so it never turns grey */
+  -webkit-mask-image: linear-gradient(0deg, transparent 0, #000 calc(var(--fade) * 1.6));
+  mask-image: linear-gradient(0deg, transparent 0, #000 calc(var(--fade) * 1.6));
 }
 
 @media (min-width: 48rem) {
   .hero__media::after {
     background:
-      linear-gradient(0deg, rgb(0 0 0 / 0.7) 0%, transparent 25%),
+      linear-gradient(0deg, rgb(0 0 0 / 0.6) 0%, transparent 35%),
       linear-gradient(
         90deg,
         rgb(0 0 0 / 0.7) 0%,

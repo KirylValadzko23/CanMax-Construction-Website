@@ -45,6 +45,26 @@
   opacity: 0.75;
 }
 
+/* ---- Photo fade -----------------------------------------------------------
+   Soft fade at the bottom of a top photo into the white section below.
+   The parent sets --fade (height) and keeps the same space empty at its
+   bottom so no text sits in the fade.                                    */
+.photo-fade {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: -1;
+  height: var(--fade, 6rem);
+  background: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0) 0%,
+    rgb(255 255 255 / 0.35) 35%,
+    rgb(255 255 255 / 0.8) 70%,
+    var(--c-white) 100%
+  );
+  pointer-events: none;
+}
+
 /* Leave room for the fixed call bar on phones so it never hides content. */
 @media (max-width: 47.99rem) {
   body {

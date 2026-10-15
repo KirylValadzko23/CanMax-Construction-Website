@@ -98,9 +98,12 @@
    The photo fills the block; light shading only behind the text keeps
    the photo bright. No grid or red stroke, so the photo leads.          */
 .page-hero--photo {
+  --fade: clamp(4rem, 9vw, 8rem); /* height of the fade into the white section */
+
   display: flex;
   min-height: min(44rem, calc(100svh - var(--header-h)));
-  padding-block: var(--sp-6) var(--sp-7);
+  padding-block: var(--sp-6) calc(var(--sp-5) + var(--fade));
+  border-bottom: 0;
 }
 
 .page-hero--photo::before,
@@ -111,7 +114,7 @@
 .page-hero__media {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
 }
 
 .page-hero__media img {
@@ -132,13 +135,16 @@
     rgb(0 0 0 / 0.15) 35%,
     rgb(0 0 0 / 0.85) 100%
   );
+  /* The shading melts away over the fade, so it never turns grey */
+  -webkit-mask-image: linear-gradient(0deg, transparent 0, #000 calc(var(--fade) * 1.6));
+  mask-image: linear-gradient(0deg, transparent 0, #000 calc(var(--fade) * 1.6));
 }
 
 /* Larger screens: shade the left side, where the text sits */
 @media (min-width: 48rem) {
   .page-hero__media::after {
     background:
-      linear-gradient(0deg, rgb(0 0 0 / 0.5) 0%, transparent 25%),
+      linear-gradient(0deg, rgb(0 0 0 / 0.4) 0%, transparent 35%),
       linear-gradient(90deg, rgb(0 0 0 / 0.75) 0%, rgb(0 0 0 / 0.45) 40%, transparent 65%);
   }
 }
