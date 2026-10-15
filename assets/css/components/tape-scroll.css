@@ -1,14 +1,14 @@
 /* ==========================================================================
    Measuring-tape scrollbar
-   Replaces the browser scrollbar with a tape measure: 0 % at the top of the
-   page, 100 % at the bottom. The white "blade" pulls out as you scroll and
-   the red hook marks where you are. Click or drag the tape to jump.
+   Replaces the browser scrollbar with a tape measure pulled out from under
+   the header. The tape is pulled out exactly as far as you have scrolled:
+   at 63 % of the page its tip sits 63 % of the way down the window, and it
+   extends or retracts as you scroll. The tip marks where you are, with the
+   "100" end right behind it. Click or drag the tape area to jump.
 
-   It floats over the page and only shows while scrolling, or when the
-   mouse reaches the right edge of the window (tape-scroll.js adds
-   .is-visible). Like a real tape measure, it pulls out downward from
-   under the header, tip (100) first, and reels back up when it hides.
-   The native scrollbar is only hidden once tape-scroll.js has run
+   It only shows while scrolling, or when the mouse reaches the right edge
+   of the window (tape-scroll.js adds .is-visible); otherwise it reels back
+   in. The native scrollbar is only hidden once tape-scroll.js has run
    (html.has-tape), so the page is never left without one.
    ========================================================================== */
 
@@ -33,7 +33,8 @@ html.has-tape::-webkit-scrollbar {
 }
 
 /* The "case": a fixed window under the header. Anything above its top
-   edge is hidden, so the tape seems to come out from under the header. */
+   edge is hidden, so the tape seems to come out from under the header.
+   Its full height stands for the full page (0 % to 100 %). */
 .tape {
   --p: 0; /* scroll progress from 0 to 1, set by tape-scroll.js */
 
@@ -54,34 +55,43 @@ html.has-tape::-webkit-scrollbar {
   pointer-events: auto;
 }
 
-/* The tape itself: hidden above the case, slides down to pull out */
+/* The tape itself, as tall as the case. Hidden: fully above the case.
+   Visible: slid down so its tip sits at the scroll position (at least the
+   tip always shows, even at the very top of the page). */
 .tape__body {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   width: var(--tape-w);
-  background: var(--c-black);
-  border-left: var(--bw-1) solid var(--c-white-12);
+  background: var(--c-white);
+  color: var(--c-black);
+  border-left: var(--bw-1) solid var(--c-black-12);
   transform: translateY(-100%);
   /* reeling back in: quick, accelerating upward */
   transition: transform 380ms cubic-bezier(0.55, 0, 0.75, 0.2);
 }
 
 .tape.is-visible .tape__body {
-  transform: none;
-  /* pulling out: fast start, settles at the bottom */
+  transform: translateY(max(calc((var(--p) - 1) * 100%), calc(var(--tip-h) - 100%)));
+  /* pulling out: fast start, settles at the scroll position */
   transition: transform 520ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Once out, the tape follows the scroll closely */
+.tape.is-visible.is-following .tape__body {
+  transition: transform 120ms linear;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .tape__body,
-  .tape.is-visible .tape__body {
+  .tape.is-visible .tape__body,
+  .tape.is-visible.is-following .tape__body {
     transition: none;
   }
 }
 
-/* The metal tip (hook) at the end of the tape */
+/* The metal tip (hook) at the end of the tape: shows where you are */
 .tape__tip {
   position: absolute;
   bottom: 0;
@@ -89,7 +99,8 @@ html.has-tape::-webkit-scrollbar {
   left: -0.375rem;
   height: var(--tip-h);
   background: var(--c-white-70);
-  border-top: var(--bw-1) solid var(--c-white);
+  border-top: var(--bw-2) solid var(--c-red);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
 }
 
 @media (max-width: 47.99rem) {
@@ -114,24 +125,11 @@ html.has-tape::-webkit-scrollbar {
   }
 }
 
-/* ---- Ruler: two identical layers ------------------------------------
-   .tape__track = the faint ruler still inside the case
-   .tape__blade = the white blade already pulled out (clipped to --p)   */
-/* Ruler stops just above the tip so the tip never covers the "100" */
-.tape__track,
-.tape__blade {
+/* ---- Ruler markings -------------------------------------------------- */
+/* Stops just above the tip so the tip never covers the "100" */
+.tape__ruler {
   position: absolute;
   inset: 0 0 var(--tip-h) 0;
-}
-
-.tape__track {
-  color: var(--c-white-40);
-}
-
-.tape__blade {
-  background: var(--c-white);
-  color: var(--c-black);
-  clip-path: inset(0 0 calc((1 - var(--p)) * 100%) 0);
 }
 
 /* Tick marks: every 1 % short, every 5 % medium, every 10 % long */
@@ -175,22 +173,4 @@ html.has-tape::-webkit-scrollbar {
   .tape__ticks {
     background-size: 100% 100%, 70% 100%, 0 0;
   }
-}
-
-/* ---- The hook: red marker showing where you are ---------------------- */
-.tape__cursor {
-  position: absolute;
-  top: calc(var(--p) * (100% - var(--tip-h)));
-  left: -0.375rem; /* the hook lip sticks out past the blade */
-  right: 0;
-  height: 0;
-}
-
-.tape__cursor::before {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  top: -2px;
-  height: 4px;
-  background: var(--c-red);
 }

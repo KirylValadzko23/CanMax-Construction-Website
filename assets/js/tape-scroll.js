@@ -1,6 +1,6 @@
 /* ==========================================================================
    Measuring-tape scrollbar
-   Builds the tape, keeps it in sync with the scroll position, shows it
+   Builds the tape and pulls it out as far as the page is scrolled, shows it
    only while scrolling (or when the mouse reaches the right edge), and
    lets mouse users click or drag it to jump around the page.
    ========================================================================== */
@@ -35,38 +35,51 @@
   // Purely visual: keyboard and screen-reader users scroll the page as usual.
   tape.setAttribute("aria-hidden", "true");
 
-  // The sliding part: ruler layers, position marker and the metal tip.
+  // The sliding part: ruler markings and the metal tip.
   var body = document.createElement("div");
   body.className = "tape__body";
-
-  var cursor = document.createElement("div");
-  cursor.className = "tape__cursor";
 
   var tip = document.createElement("div");
   tip.className = "tape__tip";
 
-  body.appendChild(buildRuler("tape__track"));
-  body.appendChild(buildRuler("tape__blade"));
-  body.appendChild(cursor);
+  body.appendChild(buildRuler("tape__ruler"));
   body.appendChild(tip);
   tape.appendChild(body);
   document.body.appendChild(tape);
   root.classList.add("has-tape");
 
   /* ---- Show / hide ---------------------------------------------------- */
+  var PULL_OUT = 520; // ms, matches the pull-out animation in the CSS
   var hideTimer = null;
+  var followTimer = null;
   var atEdge = false;
   var dragging = false;
+
+  function hide() {
+    tape.classList.remove("is-visible", "is-following");
+    clearTimeout(followTimer);
+  }
 
   function scheduleHide() {
     clearTimeout(hideTimer);
     hideTimer = setTimeout(function () {
-      if (!atEdge && !dragging) tape.classList.remove("is-visible");
+      if (!atEdge && !dragging) hide();
     }, HIDE_DELAY);
   }
 
-  function show() {
+  // Pull the tape out to the current position. After the smooth pull-out,
+  // switch to "following" so it tracks the scroll without lag.
+  function pullOut() {
+    if (tape.classList.contains("is-visible")) return;
     tape.classList.add("is-visible");
+    clearTimeout(followTimer);
+    followTimer = setTimeout(function () {
+      if (tape.classList.contains("is-visible")) tape.classList.add("is-following");
+    }, PULL_OUT);
+  }
+
+  function show() {
+    pullOut();
     scheduleHide();
   }
 
@@ -80,7 +93,7 @@
       atEdge = near;
       if (near) {
         clearTimeout(hideTimer);
-        tape.classList.add("is-visible");
+        pullOut();
       } else {
         scheduleHide();
       }
@@ -131,8 +144,10 @@
   update();
 
   /* ---- Click / drag to jump ------------------------------------------- */
+  // The whole tape area stands for the whole page, so clicking anywhere in
+  // it (even below the tip) jumps to that point.
   function jumpTo(clientY) {
-    var rect = body.getBoundingClientRect();
+    var rect = tape.getBoundingClientRect();
     var ratio = Math.min(1, Math.max(0, (clientY - rect.top) / rect.height));
     window.scrollTo({ top: ratio * maxScroll(), behavior: "instant" });
   }
