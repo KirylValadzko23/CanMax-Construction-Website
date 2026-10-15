@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="assets/css/components/hero.css" />
     <link rel="stylesheet" href="assets/css/components/services.css" />
     <link rel="stylesheet" href="assets/css/components/gallery.css" />
+    <link rel="stylesheet" href="assets/css/components/location.css" />
     <link rel="stylesheet" href="assets/css/components/tape-scroll.css" />
 
     <script src="assets/js/header.js" defer></script>
@@ -90,6 +91,18 @@
       </symbol>
       <symbol id="i-close" viewBox="0 0 24 24">
         <path fill="none" stroke="currentColor" stroke-width="2" d="M5 5l14 14M19 5 5 19" />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12Z" />
+          <circle cx="12" cy="10" r="2.5" />
+        </g>
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3 2" />
+        </g>
       </symbol>
       <symbol id="i-facebook" viewBox="0 0 24 24">
         <path
@@ -386,6 +399,73 @@
             <a class="btn btn--primary" href="nos-realisations/">
               Voir toutes nos réalisations <span class="btn__arrow" aria-hidden="true">→</span>
             </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           NOUS TROUVER — address, hours and map
+           À CONFIRMER : l'ancien site indique « 0665 rue Charlevoix »;
+           on utilise 665 (probable faute de frappe). Changer ici et dans
+           les deux liens Google Maps si besoin.
+           ================================================================ -->
+      <section class="section section--light location" id="nous-trouver" aria-labelledby="nous-trouver-titre">
+        <div class="container location__grid">
+          <div>
+            <div class="section-head">
+              <p class="eyebrow">Nous trouver</p>
+              <h2 class="section-head__title" id="nous-trouver-titre">Basés à Montréal depuis 1991.</h2>
+            </div>
+
+            <ul class="location__list" role="list">
+              <li class="location__item">
+                <span class="location__icon" aria-hidden="true"><svg><use href="#i-pin" /></svg></span>
+                <div>
+                  <p class="location__label">Adresse</p>
+                  <address class="location__value">
+                    665, rue Charlevoix<br />Montréal (Québec) H3K 2X8
+                  </address>
+                </div>
+              </li>
+              <li class="location__item">
+                <span class="location__icon" aria-hidden="true"><svg><use href="#i-clock" /></svg></span>
+                <div>
+                  <p class="location__label">Heures d'ouverture</p>
+                  <p class="location__value">Lundi au vendredi, 9 h à 17 h<br />Samedi et dimanche : fermé</p>
+                </div>
+              </li>
+              <li class="location__item">
+                <span class="location__icon" aria-hidden="true"><svg><use href="#i-phone" /></svg></span>
+                <div>
+                  <p class="location__label">Téléphone</p>
+                  <p class="location__value"><a href="tel:+15149373400">514 937-3400</a></p>
+                </div>
+              </li>
+            </ul>
+
+            <div class="location__actions">
+              <a class="btn btn--primary" href="tel:+15149373400">
+                <svg aria-hidden="true"><use href="#i-phone" /></svg>
+                Appeler
+              </a>
+              <a
+                class="btn btn--outline-dark"
+                href="https://www.google.com/maps/dir/?api=1&amp;destination=665+Rue+Charlevoix,+Montr%C3%A9al,+QC+H3K+2X8"
+                target="_blank"
+                rel="noopener"
+              >
+                Itinéraire <span class="visually-hidden">(Google Maps, nouvel onglet)</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="location__map">
+            <iframe
+              src="https://maps.google.com/maps?q=665%20Rue%20Charlevoix%2C%20Montr%C3%A9al%2C%20QC%20H3K%202X8&amp;z=15&amp;hl=fr&amp;output=embed"
+              title="Carte : Canmax Construction, 665 rue Charlevoix, Montréal"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </section>

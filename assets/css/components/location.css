@@ -1,0 +1,105 @@
+/* ==========================================================================
+   Location — "Nous trouver": address, hours and a Google map
+   ========================================================================== */
+
+.location__grid {
+  display: grid;
+  gap: var(--sp-7);
+  align-items: center;
+}
+
+@media (min-width: 64rem) {
+  .location__grid {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--sp-8);
+  }
+}
+
+.location .section-head {
+  margin-bottom: var(--sp-6);
+}
+
+/* Address / hours / phone list */
+.location__list {
+  display: grid;
+  gap: var(--sp-5);
+  padding: 0;
+  list-style: none;
+}
+
+.location__item {
+  display: flex;
+  gap: var(--sp-4);
+}
+
+.location__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: var(--c-black);
+  color: var(--c-white);
+}
+
+.location__icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.location__label {
+  font-family: var(--ff-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.location__value {
+  margin-top: var(--sp-1);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+}
+
+address.location__value {
+  font-style: normal;
+}
+
+.location__value a {
+  text-decoration: none;
+}
+
+.location__value a:hover {
+  text-decoration: underline;
+}
+
+.location__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+}
+
+@media (max-width: 29.99rem) {
+  .location__actions .btn {
+    width: 100%;
+  }
+}
+
+/* Map */
+.location__map {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border: var(--bw-2) solid var(--c-black);
+  background: var(--c-black-12);
+}
+
+.location__map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
