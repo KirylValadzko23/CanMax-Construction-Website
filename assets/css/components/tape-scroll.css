@@ -4,8 +4,10 @@
    page, 100 % at the bottom. The white "blade" pulls out as you scroll and
    the red hook marks where you are. Click or drag the tape to jump.
 
-   The native scrollbar is only hidden once tape-scroll.js has run
-   (html.has-tape), so the page is never left without one.
+   It floats over the page and only shows while scrolling, or when the
+   mouse reaches the right edge of the window (tape-scroll.js adds
+   .is-visible). The native scrollbar is only hidden once tape-scroll.js
+   has run (html.has-tape), so the page is never left without one.
    ========================================================================== */
 
 :root {
@@ -26,14 +28,6 @@ html.has-tape::-webkit-scrollbar {
   display: none;
 }
 
-/* Keep page content clear of the tape, like a real scrollbar would */
-@media (min-width: 48rem) {
-  html.has-tape main,
-  html.has-tape .site-footer {
-    padding-right: var(--tape-w);
-  }
-}
-
 .tape {
   --p: 0; /* scroll progress from 0 to 1, set by tape-scroll.js */
 
@@ -48,10 +42,24 @@ html.has-tape::-webkit-scrollbar {
   font-family: var(--ff-display);
   user-select: none;
   touch-action: none;
+  /* hidden until needed: slides out to the right and fades */
+  opacity: 0;
+  transform: translateX(40%);
+  pointer-events: none;
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+}
+
+.tape.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
 }
 
 @media (max-width: 47.99rem) {
-  .tape {
+  .tape,
+  .tape.is-visible {
     bottom: var(--callbar-h);
     pointer-events: none; /* don't steal swipes on phones */
   }
@@ -120,8 +128,7 @@ html.has-tape::-webkit-scrollbar {
 }
 
 @media (max-width: 47.99rem) {
-  .tape__label,
-  .tape__readout {
+  .tape__label {
     display: none;
   }
 
@@ -130,7 +137,7 @@ html.has-tape::-webkit-scrollbar {
   }
 }
 
-/* ---- The hook: red cursor + percentage readout ----------------------- */
+/* ---- The hook: red marker showing where you are ---------------------- */
 .tape__cursor {
   position: absolute;
   top: calc(var(--p) * 100%);
@@ -146,21 +153,4 @@ html.has-tape::-webkit-scrollbar {
   top: -2px;
   height: 4px;
   background: var(--c-red);
-}
-
-.tape__readout {
-  position: absolute;
-  right: calc(100% + 0.25rem);
-  top: 0;
-  padding: 0.1875rem 0.375rem;
-  background: var(--c-black);
-  border: var(--bw-1) solid var(--c-red);
-  color: var(--c-white);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-bold);
-  line-height: 1;
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;
-  /* below the hook at the top of the page, above it at the bottom */
-  transform: translateY(calc(var(--p) * (-100% - 8px) + 4px));
 }
