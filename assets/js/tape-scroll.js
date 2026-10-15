@@ -92,6 +92,8 @@
     var rect = tape.getBoundingClientRect();
     var ratio = Math.min(1, Math.max(0, (clientY - rect.top) / rect.height));
     window.scrollTo({ top: ratio * maxScroll(), behavior: "instant" });
+    // Move the tape right now instead of waiting for the next frame.
+    tape.style.setProperty("--p", ratio);
   }
 
   body.addEventListener("pointerdown", function (event) {

@@ -84,6 +84,11 @@ html.has-tape::-webkit-scrollbar {
   transition: transform 120ms linear;
 }
 
+/* While dragging, it sticks to the cursor with no glide at all */
+.tape.is-visible.is-dragging .tape__body {
+  transition: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tape__body,
   .tape.is-visible .tape__body,
