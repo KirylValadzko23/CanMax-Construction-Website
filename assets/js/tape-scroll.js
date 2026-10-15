@@ -1,15 +1,14 @@
 /* ==========================================================================
    Measuring-tape scrollbar
-   Builds the tape and pulls it out as far as the page is scrolled, shows it
-   only while scrolling (or when the mouse reaches the right edge), and
-   lets mouse users click or drag it to jump around the page.
+   Builds the tape, pulls it out (once, when the page opens) as far as the
+   page is scrolled, then keeps it out and following the scroll. Mouse
+   users can click or drag the tape to jump around the page.
    ========================================================================== */
 (function () {
   "use strict";
 
   var root = document.documentElement;
-  var HIDE_DELAY = 1200; // ms after scrolling stops before the tape hides
-  var EDGE = 32; // px from the right edge of the window that reveals it
+  var PULL_OUT = 520; // ms, matches the pull-out animation in the CSS
 
   /* ---- Build the tape ------------------------------------------------- */
   function buildRuler(className) {
@@ -48,65 +47,6 @@
   document.body.appendChild(tape);
   root.classList.add("has-tape");
 
-  /* ---- Show / hide ---------------------------------------------------- */
-  var PULL_OUT = 520; // ms, matches the pull-out animation in the CSS
-  var hideTimer = null;
-  var followTimer = null;
-  var atEdge = false;
-  var dragging = false;
-
-  function hide() {
-    tape.classList.remove("is-visible", "is-following");
-    clearTimeout(followTimer);
-  }
-
-  function scheduleHide() {
-    clearTimeout(hideTimer);
-    hideTimer = setTimeout(function () {
-      if (!atEdge && !dragging) hide();
-    }, HIDE_DELAY);
-  }
-
-  // Pull the tape out to the current position. After the smooth pull-out,
-  // switch to "following" so it tracks the scroll without lag.
-  function pullOut() {
-    if (tape.classList.contains("is-visible")) return;
-    tape.classList.add("is-visible");
-    clearTimeout(followTimer);
-    followTimer = setTimeout(function () {
-      if (tape.classList.contains("is-visible")) tape.classList.add("is-following");
-    }, PULL_OUT);
-  }
-
-  function show() {
-    pullOut();
-    scheduleHide();
-  }
-
-  // Mouse near the right edge (or over the tape): keep it out.
-  document.addEventListener(
-    "mousemove",
-    function (event) {
-      var zone = Math.max(EDGE, tape.offsetWidth + 8);
-      var near = event.clientX >= window.innerWidth - zone;
-      if (near === atEdge) return;
-      atEdge = near;
-      if (near) {
-        clearTimeout(hideTimer);
-        pullOut();
-      } else {
-        scheduleHide();
-      }
-    },
-    { passive: true }
-  );
-
-  // Mouse leaves the window: let the tape hide.
-  root.addEventListener("mouseleave", function () {
-    atEdge = false;
-    scheduleHide();
-  });
-
   /* ---- Keep it in sync ------------------------------------------------ */
   function maxScroll() {
     return Math.max(0, root.scrollHeight - window.innerHeight);
@@ -128,14 +68,7 @@
     }
   }
 
-  window.addEventListener(
-    "scroll",
-    function () {
-      requestUpdate();
-      show();
-    },
-    { passive: true }
-  );
+  window.addEventListener("scroll", requestUpdate, { passive: true });
   window.addEventListener("resize", requestUpdate);
   // Page height changes as images and fonts load.
   if ("ResizeObserver" in window) {
@@ -143,34 +76,42 @@
   }
   update();
 
+  /* ---- Pull it out once, then follow the scroll closely --------------- */
+  window.requestAnimationFrame(function () {
+    tape.classList.add("is-visible");
+    setTimeout(function () {
+      tape.classList.add("is-following");
+    }, PULL_OUT);
+  });
+
   /* ---- Click / drag to jump ------------------------------------------- */
-  // The whole tape area stands for the whole page, so clicking anywhere in
-  // it (even below the tip) jumps to that point.
+  // The tape's full height stands for the whole page.
+  var dragging = false;
+
   function jumpTo(clientY) {
     var rect = tape.getBoundingClientRect();
     var ratio = Math.min(1, Math.max(0, (clientY - rect.top) / rect.height));
     window.scrollTo({ top: ratio * maxScroll(), behavior: "instant" });
   }
 
-  tape.addEventListener("pointerdown", function (event) {
+  body.addEventListener("pointerdown", function (event) {
     if (event.button !== 0) return;
     event.preventDefault();
     dragging = true;
     tape.classList.add("is-dragging");
-    tape.setPointerCapture(event.pointerId);
+    body.setPointerCapture(event.pointerId);
     jumpTo(event.clientY);
   });
 
-  tape.addEventListener("pointermove", function (event) {
+  body.addEventListener("pointermove", function (event) {
     if (dragging) jumpTo(event.clientY);
   });
 
   function stopDragging() {
     dragging = false;
     tape.classList.remove("is-dragging");
-    scheduleHide();
   }
 
-  tape.addEventListener("pointerup", stopDragging);
-  tape.addEventListener("pointercancel", stopDragging);
+  body.addEventListener("pointerup", stopDragging);
+  body.addEventListener("pointercancel", stopDragging);
 })();

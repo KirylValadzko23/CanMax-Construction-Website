@@ -1,14 +1,14 @@
 /* ==========================================================================
    Measuring-tape scrollbar
    Replaces the browser scrollbar with a tape measure pulled out from under
-   the header. The tape is pulled out exactly as far as you have scrolled:
-   at 63 % of the page its tip sits 63 % of the way down the window, and it
-   extends or retracts as you scroll. The tip marks where you are, with the
-   "100" end right behind it. Click or drag the tape area to jump.
+   the header. Like a real tape, the metal tip (hook) is 0 and the numbers
+   grow back toward the case. The tape is pulled out exactly as far as you
+   have scrolled, so the number where it comes out from under the header
+   reads your position: 63 at 63 % of the page, 100 at the bottom.
+   Click or drag the tape to jump.
 
-   It only shows while scrolling, or when the mouse reaches the right edge
-   of the window (tape-scroll.js adds .is-visible); otherwise it reels back
-   in. The native scrollbar is only hidden once tape-scroll.js has run
+   It pulls out once when the page opens, then stays out and follows the
+   scroll. The native scrollbar is only hidden once tape-scroll.js has run
    (html.has-tape), so the page is never left without one.
    ========================================================================== */
 
@@ -48,10 +48,11 @@ html.has-tape::-webkit-scrollbar {
   font-family: var(--ff-display);
   user-select: none;
   touch-action: none;
+  /* only the tape itself is clickable, never the empty strip below it */
   pointer-events: none;
 }
 
-.tape.is-visible {
+.tape.is-visible .tape__body {
   pointer-events: auto;
 }
 
@@ -104,9 +105,11 @@ html.has-tape::-webkit-scrollbar {
 }
 
 @media (max-width: 47.99rem) {
-  .tape,
-  .tape.is-visible {
+  .tape {
     bottom: var(--callbar-h);
+  }
+
+  .tape.is-visible .tape__body {
     pointer-events: none; /* don't steal swipes on phones */
   }
 
@@ -116,53 +119,57 @@ html.has-tape::-webkit-scrollbar {
 }
 
 @media (min-width: 48rem) and (pointer: fine) {
-  .tape {
+  .tape__body {
     cursor: pointer;
   }
 
-  .tape.is-dragging {
+  .tape.is-dragging .tape__body {
     cursor: grabbing;
   }
 }
 
-/* ---- Ruler markings -------------------------------------------------- */
-/* Stops just above the tip so the tip never covers the "100" */
+/* ---- Ruler markings ---------------------------------------------------
+   0 sits just above the tip and 100 at the top, like a real tape.
+   The ruler stops above the tip so the tip never covers the "0".        */
 .tape__ruler {
   position: absolute;
   inset: 0 0 var(--tip-h) 0;
 }
 
-/* Tick marks: every 1 % short, every 5 % medium, every 10 % long */
+/* Tick marks counted up from the tip: every 1 short, 5 medium, 10 long */
 .tape__ticks {
   position: absolute;
   inset: 0;
   background:
-    repeating-linear-gradient(to bottom, currentColor 0 1px, transparent 1px 10%) left top / 55% 100% no-repeat,
-    repeating-linear-gradient(to bottom, currentColor 0 1px, transparent 1px 5%) left top / 35% 100% no-repeat,
-    repeating-linear-gradient(to bottom, currentColor 0 1px, transparent 1px 1%) left top / 20% 100% no-repeat;
+    repeating-linear-gradient(to top, currentColor 0 1px, transparent 1px 10%) left bottom / 55% 100% no-repeat,
+    repeating-linear-gradient(to top, currentColor 0 1px, transparent 1px 5%) left bottom / 35% 100% no-repeat,
+    repeating-linear-gradient(to top, currentColor 0 1px, transparent 1px 1%) left bottom / 20% 100% no-repeat;
 }
 
-/* Final tick at 100 % (the repeating pattern stops just short of it) */
+/* Final tick at 100, at the top (the repeating pattern stops just short) */
 .tape__ticks::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0;
+  top: 0;
   width: 55%;
   height: 1px;
   background: currentColor;
 }
 
+/* --at is the number as a fraction (0 to 1); --y is its height from the top */
 .tape__label {
+  --y: calc(1 - var(--at));
+
   position: absolute;
   right: 0.25rem;
-  top: calc(var(--at) * 100%);
+  top: calc(var(--y) * 100%);
   font-size: 0.6875rem;
   font-weight: var(--fw-bold);
   line-height: 1;
   font-variant-numeric: tabular-nums;
-  /* 0 sits below its tick, 100 sits above, the rest are centred */
-  transform: translateY(calc(var(--at) * (-100% - 4px) + 2px));
+  /* 100 sits below its tick, 0 sits above, the rest are centred */
+  transform: translateY(calc(var(--y) * (-100% - 4px) + 2px));
 }
 
 @media (max-width: 47.99rem) {
