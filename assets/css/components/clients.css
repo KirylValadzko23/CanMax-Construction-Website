@@ -1,0 +1,67 @@
+/* ==========================================================================
+   Clients — "Nos clients" logo strip
+   Logos are shown in greyscale to match the black / white / red palette,
+   and switch to their real colours on hover.
+   ========================================================================== */
+
+.clients {
+  padding-top: 0;
+}
+
+.clients__inner {
+  padding-top: var(--section-pad);
+  border-top: var(--bw-1) solid var(--c-black-12);
+}
+
+.clients .section-head {
+  margin-bottom: var(--sp-6);
+}
+
+/* Plain centred rows: no boxes, any leftover logos stay centred */
+.clients__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-5) var(--sp-6);
+}
+
+.clients__item {
+  display: grid;
+  place-items: center;
+  flex: 0 0 calc(50% - var(--sp-6));
+  height: 7rem;
+}
+
+@media (min-width: 48rem) {
+  .clients__item {
+    flex-basis: calc(33.333% - var(--sp-6));
+  }
+}
+
+@media (min-width: 64rem) {
+  .clients__grid {
+    justify-content: space-between;
+  }
+
+  .clients__item {
+    flex-basis: calc(20% - var(--sp-6));
+  }
+}
+
+.clients__item img {
+  width: auto;
+  max-width: 85%;
+  height: auto;
+  max-height: 5.5rem;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.9;
+  transition:
+    filter var(--dur-base) var(--ease-out),
+    opacity var(--dur-base) var(--ease-out);
+}
+
+.clients__item:hover img {
+  filter: none;
+  opacity: 1;
+}
