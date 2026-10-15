@@ -1,0 +1,121 @@
+/* ==========================================================================
+   Soumission page — intro and phone on the left, form on the right
+   ========================================================================== */
+
+.quote {
+  padding-top: clamp(2rem, 5vw, 4rem);
+}
+
+.quote__grid {
+  display: grid;
+  gap: var(--sp-7);
+  margin-top: var(--sp-6);
+}
+
+/* Phones and tablets: title, then the form, then perks and phone.
+   The intro wrapper steps aside (display: contents) so its two parts
+   can sit before and after the form. */
+@media (max-width: 63.99rem) {
+  .quote__intro {
+    display: contents;
+  }
+
+  .quote__head {
+    order: 1;
+  }
+
+  .quote__panel {
+    order: 2;
+  }
+
+  .quote__extra {
+    order: 3;
+  }
+
+  .quote__extra .quote__perks {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 64rem) {
+  .quote__grid {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--sp-8);
+    align-items: start;
+  }
+
+  /* Intro stays in view while filling a long form */
+  .quote__intro {
+    position: sticky;
+    top: calc(var(--header-h) + var(--sp-5));
+  }
+}
+
+.quote__title {
+  margin-top: var(--sp-4);
+  font-size: clamp(2.5rem, 1.8rem + 3vw, 4.5rem);
+}
+
+.quote__lead {
+  max-width: 32rem;
+  margin-top: var(--sp-5);
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
+  color: var(--c-white-70);
+}
+
+.quote__perks {
+  display: grid;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+  padding: 0;
+  list-style: none;
+}
+
+.quote__perks li {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: baseline;
+  font-weight: var(--fw-semibold);
+}
+
+.quote__perks li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.875rem;
+  height: var(--bw-2);
+  background: var(--c-red);
+  transform: translateY(-0.25em);
+}
+
+.quote__call {
+  margin-top: var(--sp-6);
+  padding-top: var(--sp-5);
+  border-top: var(--bw-1) solid var(--c-white-12);
+  color: var(--c-white-70);
+}
+
+.quote__call a {
+  display: inline-block;
+  margin-top: var(--sp-2);
+  font-family: var(--ff-display);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-black);
+  color: var(--c-white);
+  text-decoration: none;
+}
+
+.quote__call a:hover {
+  color: var(--c-red);
+}
+
+.quote__hours {
+  display: block;
+  margin-top: var(--sp-1);
+  font-size: var(--fs-sm);
+}
+
+/* The form sits in a framed panel */
+.quote__panel {
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  border: var(--bw-1) solid var(--c-white-12);
+}

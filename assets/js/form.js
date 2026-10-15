@@ -46,7 +46,9 @@
     /* ---- Single field rules -------------------------------------------- */
     function checkField(input) {
       var value = input.value.trim();
-      if (input.required && !value) return MESSAGES.required;
+      if (input.required && !value) {
+        return input.getAttribute("data-required-message") || MESSAGES.required;
+      }
       if (!value) return "";
       if (input.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) return MESSAGES.email;
       if (input.type === "tel" && value.replace(/\D/g, "").length < 10) return MESSAGES.tel;
@@ -62,7 +64,9 @@
       if (file.size > maxMb * 1024 * 1024) return MESSAGES.fileSize.replace("{mb}", maxMb);
       var accept = (input.getAttribute("accept") || "").toLowerCase().split(",");
       var ext = "." + file.name.split(".").pop().toLowerCase();
-      if (accept[0] && accept.indexOf(ext) === -1) return MESSAGES.fileType;
+      if (accept[0] && accept.indexOf(ext) === -1) {
+        return input.getAttribute("data-type-message") || MESSAGES.fileType;
+      }
       return "";
     }
 
@@ -87,7 +91,15 @@
     function validate() {
       var firstInvalid = null;
 
-      Array.prototype.forEach.call(form.querySelectorAll(".field > input, .field > select, .field > textarea"), function (input) {
+      // Every field except those inside a "one of" group (checked below).
+      var singles = Array.prototype.filter.call(
+        form.querySelectorAll(".field input, .field select, .field textarea"),
+        function (input) {
+          return !input.closest("[data-one-of]");
+        }
+      );
+
+      singles.forEach(function (input) {
         var message = checkField(input);
         setError(input, document.getElementById(input.id + "-erreur"), message);
         if (message && !firstInvalid) firstInvalid = input;

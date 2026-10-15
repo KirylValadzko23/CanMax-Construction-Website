@@ -31,7 +31,8 @@
 }
 
 .field label,
-.field legend {
+.field legend,
+.field__label-text {
   padding: 0;
   font-family: var(--ff-display);
   font-size: 1.0625rem;
@@ -64,6 +65,38 @@
 .field input::placeholder,
 .field textarea::placeholder {
   color: var(--c-white-40);
+}
+
+/* Dropdown: custom white arrow, dark option list */
+.field select {
+  appearance: none;
+  padding-right: var(--sp-7);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--sp-4) center;
+  background-size: 1.25rem;
+  cursor: pointer;
+}
+
+.field select option {
+  background: var(--c-black);
+  color: var(--c-white);
+}
+
+.field textarea {
+  min-height: 9rem;
+  resize: vertical;
+  line-height: var(--lh-body);
+}
+
+/* "(facultatif)" next to optional labels */
+.field__optional {
+  font-family: var(--ff-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--c-white-70);
 }
 
 .field input:hover,
@@ -117,6 +150,14 @@
 
 .field__sub label {
   font-size: var(--fs-sm);
+}
+
+/* The file button's label is the "Ajouter…" button itself, not a title */
+.field .file {
+  font-family: var(--ff-body);
+  font-weight: var(--fw-regular);
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .form__or {
