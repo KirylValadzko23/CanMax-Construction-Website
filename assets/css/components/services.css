@@ -1,0 +1,167 @@
+/* ==========================================================================
+   Services grid — the three sectors, plus a call-to-action band
+   Cards sit on a black grid so the 2px gaps read as structural lines.
+   ========================================================================== */
+
+.services__grid {
+  display: grid;
+  gap: var(--bw-2);
+  background: var(--c-black);
+  border: var(--bw-2) solid var(--c-black);
+}
+
+@media (min-width: 64rem) {
+  .services__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.service-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--c-white);
+  color: var(--c-black);
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out);
+}
+
+/* Red bar that draws across the top on hover */
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: var(--bw-4);
+  background: var(--c-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.service-card:hover,
+.service-card:focus-within {
+  background: var(--c-black);
+  color: var(--c-white);
+}
+
+.service-card:hover::before,
+.service-card:focus-within::before {
+  transform: scaleX(1);
+}
+
+.service-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.service-card__icon {
+  width: 3rem;
+  height: 3rem;
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.service-card:hover .service-card__icon,
+.service-card:focus-within .service-card__icon {
+  color: var(--c-red);
+}
+
+.service-card__num {
+  font-family: var(--ff-display);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-black);
+  line-height: 0.8;
+  /* outlined numbers, like stencilled markings */
+  color: transparent;
+  -webkit-text-stroke: var(--bw-1) var(--c-black);
+  opacity: 0.35;
+}
+
+.service-card:hover .service-card__num,
+.service-card:focus-within .service-card__num {
+  -webkit-text-stroke-color: var(--c-red);
+  opacity: 1;
+}
+
+.service-card__title {
+  margin-top: var(--sp-6);
+  font-size: var(--fs-xl);
+}
+
+/* The whole card is clickable: the title link stretches over it */
+.service-card__title a {
+  text-decoration: none;
+}
+
+.service-card__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.service-card__title a:focus-visible {
+  outline: none;
+}
+
+.service-card:has(a:focus-visible) {
+  outline: var(--bw-2) solid var(--c-red);
+  outline-offset: 2px;
+}
+
+.service-card__text {
+  margin-top: var(--sp-4);
+  opacity: 0.8;
+}
+
+.service-card__more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: auto;
+  padding-top: var(--sp-6);
+  font-family: var(--ff-display);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.service-card:hover .btn__arrow {
+  transform: translateX(4px);
+}
+
+/* ---- Call-to-action band under the grid ------------------------------- */
+.services__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  margin-top: var(--sp-7);
+  padding-top: var(--sp-6);
+  border-top: var(--bw-1) solid var(--c-black-12);
+}
+
+.services__cta-title {
+  font-size: var(--fs-lg);
+}
+
+.services__cta-text {
+  margin-top: var(--sp-1);
+  opacity: 0.75;
+}
+
+.services__cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+@media (max-width: 29.99rem) {
+  .services__cta-actions .btn {
+    width: 100%;
+  }
+}

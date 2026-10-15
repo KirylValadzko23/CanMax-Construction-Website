@@ -1,0 +1,422 @@
+/* ==========================================================================
+   Header — sticky bar, desktop nav, phone, mobile menu, mobile call bar
+   Desktop nav appears at 80rem (1280px); below that, the menu button.
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: var(--c-black);
+  border-bottom: var(--bw-1) solid var(--c-white-12);
+}
+
+/* Red structural line that draws in once the visitor starts scrolling */
+.site-header::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: calc(var(--bw-1) * -1);
+  height: var(--bw-2);
+  background: var(--c-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.site-header.is-scrolled::after {
+  transform: scaleX(1);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+  height: var(--header-h);
+}
+
+/* ---- Logo -------------------------------------------------------------- */
+.site-header__logo {
+  flex-shrink: 0;
+}
+
+.site-header__logo img {
+  width: auto;
+  height: 1.875rem;
+}
+
+@media (min-width: 48rem) {
+  .site-header__logo img {
+    height: 2.25rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  .site-header__logo img {
+    height: 2.5rem;
+  }
+}
+
+/* ---- Desktop navigation ----------------------------------------------- */
+.site-nav {
+  display: none;
+  margin-inline: auto;
+}
+
+@media (min-width: 80rem) {
+  .site-nav {
+    display: block;
+  }
+}
+
+.site-nav__list {
+  display: flex;
+  gap: clamp(1.25rem, 2.2vw, 2.25rem);
+}
+
+.site-nav a {
+  position: relative;
+  display: block;
+  padding-block: var(--sp-2);
+  font-family: var(--ff-display);
+  font-size: 1.0625rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--c-white-70);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: var(--bw-2);
+  background: var(--c-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--c-white);
+}
+
+.site-nav a:hover::after,
+.site-nav a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* ---- Right-hand actions ------------------------------------------------ */
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-left: auto;
+}
+
+@media (min-width: 80rem) {
+  .site-header__actions {
+    margin-left: 0;
+  }
+}
+
+.header-phone {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  text-decoration: none;
+}
+
+.header-phone__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: var(--c-red);
+  color: var(--c-white);
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.header-phone__icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.header-phone:hover .header-phone__icon {
+  background: var(--c-white);
+  color: var(--c-black);
+}
+
+.header-phone__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.header-phone__label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-white-70);
+}
+
+.header-phone__number {
+  font-family: var(--ff-display);
+  font-size: 1.375rem;
+  font-weight: var(--fw-black);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* On phones the number is read aloud by screen readers but hidden visually;
+   the red icon button and the bottom call bar do the work. */
+@media (max-width: 47.99rem) {
+  .header-phone__text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+.site-header__cta {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .site-header__cta {
+    display: inline-flex;
+  }
+}
+
+/* ---- Menu button (phones and tablets) ----------------------------------
+   Three bars that cross into a red X — a nod to the logo.               */
+.menu-toggle {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: var(--bw-1) solid var(--c-white-40);
+}
+
+@media (min-width: 80rem) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
+.menu-toggle__bars,
+.menu-toggle__bars::before,
+.menu-toggle__bars::after {
+  display: block;
+  width: 1.25rem;
+  height: var(--bw-2);
+  background: var(--c-white);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+.menu-toggle__bars {
+  position: relative;
+}
+
+.menu-toggle__bars::before,
+.menu-toggle__bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-toggle__bars::before {
+  top: -0.4rem;
+}
+
+.menu-toggle__bars::after {
+  top: 0.4rem;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bars {
+  background: transparent;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bars::before {
+  top: 0;
+  background: var(--c-red);
+  transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bars::after {
+  top: 0;
+  background: var(--c-red);
+  transform: rotate(-45deg);
+}
+
+/* Without JavaScript the menu button can't work, so show the links instead */
+.no-js .menu-toggle {
+  display: none;
+}
+
+/* ---- Mobile menu panel ------------------------------------------------- */
+.mobile-menu {
+  position: fixed;
+  inset: var(--header-h) 0 0;
+  z-index: var(--z-menu);
+  overflow-y: auto;
+  background: var(--c-black);
+  /* extra bottom room so the phone call bar never covers the last items */
+  padding-block: var(--sp-5) calc(var(--sp-7) + var(--callbar-h));
+}
+
+.mobile-menu[hidden] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-menu:not([hidden]) {
+    animation: menu-in var(--dur-base) var(--ease-out);
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.75rem);
+  }
+}
+
+@media (min-width: 80rem) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+.mobile-menu__list a {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-4);
+  padding-block: var(--sp-4);
+  border-bottom: var(--bw-1) solid var(--c-white-12);
+  font-family: var(--ff-display);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-black);
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.mobile-menu__list a[aria-current="page"] {
+  color: var(--c-red);
+}
+
+.mobile-menu__num {
+  min-width: 1.75rem;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.1em;
+  color: var(--c-red);
+}
+
+.mobile-menu__actions {
+  display: grid;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+}
+
+.mobile-menu__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-top: var(--sp-6);
+  font-size: var(--fs-sm);
+  color: var(--c-white-70);
+}
+
+/* ---- Social links (used here and later in the footer) ------------------ */
+.social {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.social a {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: var(--bw-1) solid var(--c-white-40);
+  color: var(--c-white);
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.social a:hover {
+  background: var(--c-red);
+  border-color: var(--c-red);
+}
+
+.social svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* ---- Bottom call bar (phones only) ------------------------------------- */
+.callbar {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: var(--z-callbar);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: var(--callbar-h);
+}
+
+@media (min-width: 48rem) {
+  .callbar {
+    display: none;
+  }
+}
+
+.callbar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  font-family: var(--ff-display);
+  font-size: 1.1875rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.callbar svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.callbar__call {
+  background: var(--c-red);
+  color: var(--c-white);
+}
+
+.callbar__quote {
+  background: var(--c-white);
+  color: var(--c-black);
+}
+
+body.menu-open {
+  overflow: hidden;
+}

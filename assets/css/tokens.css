@@ -1,0 +1,140 @@
+/* ==========================================================================
+   CANMAX CONSTRUCTION — Design tokens
+   The single source of truth for colours, type, spacing and motion.
+   Change a value here and it updates everywhere on the site.
+   ========================================================================== */
+
+/* ---- Fonts (self-hosted, OFL licence) ---------------------------------- */
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("../fonts/barlow-condensed-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("../fonts/barlow-condensed-800.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("../fonts/barlow-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("../fonts/barlow-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("../fonts/barlow-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---- Colour: only black, white and brand red -------------------------
+     Tints are transparent black/white, never new hues.
+     Contrast: red on black 4.74:1 (AA any size)
+               red on white 4.43:1 (AA large text only, 19px bold+)      */
+  --c-black: #000000;
+  --c-white: #ffffff;
+  --c-red: #ec1a22;
+
+  --c-white-70: rgb(255 255 255 / 0.7);
+  --c-white-40: rgb(255 255 255 / 0.4);
+  --c-white-12: rgb(255 255 255 / 0.12);
+  --c-white-06: rgb(255 255 255 / 0.06);
+  --c-black-85: rgb(0 0 0 / 0.85);
+  --c-black-70: rgb(0 0 0 / 0.7);
+  --c-black-12: rgb(0 0 0 / 0.12);
+
+  /* ---- Typography ------------------------------------------------------ */
+  --ff-display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --ff-body: "Barlow", "Segoe UI", Arial, sans-serif;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 800;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --fs-md: 1.25rem;
+  --fs-lg: clamp(1.5rem, 1.4rem + 0.5vw, 1.75rem);
+  --fs-xl: clamp(2rem, 1.7rem + 1.5vw, 2.75rem);
+  --fs-2xl: clamp(2.5rem, 2rem + 2.5vw, 3.75rem);
+  --fs-hero: clamp(3rem, 1.9rem + 5.5vw, 6rem);
+
+  --lh-tight: 1.02;
+  --lh-snug: 1.2;
+  --lh-body: 1.6;
+
+  --ls-caps: 0.2em; /* echoes the wide "C O N S T R U C T I O N" in the logo */
+  --ls-tight: -0.01em;
+
+  /* ---- Spacing (4px base) ---------------------------------------------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+  --sp-10: 8rem;
+
+  --section-pad: clamp(4rem, 8vw, 8rem);
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --container: 80rem; /* 1280px */
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --header-h: 4.5rem; /* 72px; grows on desktop below */
+  --callbar-h: 4rem; /* mobile bottom call bar */
+
+  /* ---- Structure: sharp lines, no shadows ------------------------------ */
+  --radius: 0;
+  --bw-1: 1px;
+  --bw-2: 2px;
+  --bw-4: 4px;
+  --diagonal: 20deg; /* angle of the red stroke in the logo's X */
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 400ms;
+
+  /* ---- Layers ---------------------------------------------------------- */
+  --z-tape: 90;
+  --z-header: 100;
+  --z-menu: 110;
+  --z-callbar: 105;
+  --z-lightbox: 200;
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --header-h: 5.5rem; /* 88px */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+  }
+}

@@ -1,0 +1,11 @@
+# Windows / OneDrive system files
+Thumbs.db
+desktop.ini
+~$*
+*.tmp
+
+# macOS
+.DS_Store
+
+# Personal Claude Code settings (the preview server files are kept)
+.claude/settings.local.json
