@@ -1,0 +1,108 @@
+/* ==========================================================================
+   À propos page — story with team photo, tagline, archive clipping, values
+   ========================================================================== */
+
+/* ---- Story: text beside the team photo --------------------------------- */
+.story {
+  display: grid;
+  gap: var(--sp-7);
+  align-items: start;
+}
+
+@media (min-width: 64rem) {
+  .story {
+    grid-template-columns: 5fr 6fr;
+    gap: var(--sp-8);
+  }
+}
+
+.story__text p + p {
+  margin-top: var(--sp-4);
+}
+
+.story__text p {
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+}
+
+.story__photo {
+  margin: 0;
+}
+
+.story__photo img {
+  width: 100%;
+  height: auto;
+  border: var(--bw-1) solid var(--c-black-12);
+}
+
+.story__caption {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-sm);
+  opacity: 0.7;
+}
+
+/* The company tagline, set big with a red bar */
+.story__text .tagline {
+  margin: var(--sp-6) 0 0;
+  padding-left: var(--sp-5);
+  border-left: var(--bw-4) solid var(--c-red);
+  font-family: var(--ff-display);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-black);
+  line-height: var(--lh-tight);
+  text-transform: uppercase;
+}
+
+/* Old newspaper clipping, shown like a framed archive photo */
+.archive {
+  max-width: 26rem;
+  margin: var(--sp-7) 0 0;
+}
+
+.archive img {
+  width: 100%;
+  height: auto;
+  border: var(--bw-1) solid var(--c-black-12);
+}
+
+.archive figcaption {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-sm);
+  opacity: 0.7;
+}
+
+/* ---- Values: numbered, like the steps on the Services page ------------- */
+.values {
+  display: grid;
+  gap: var(--sp-6);
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 48rem) {
+  .values {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.value {
+  padding-top: var(--sp-5);
+  border-top: var(--bw-2) solid var(--c-white);
+}
+
+.value__num {
+  font-family: var(--ff-display);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-black);
+  line-height: 1;
+  color: var(--c-red);
+}
+
+.value__title {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-lg);
+}
+
+.value__text {
+  margin-top: var(--sp-3);
+  color: var(--c-white-70);
+}
