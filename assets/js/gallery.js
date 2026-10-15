@@ -95,6 +95,15 @@
 
   render();
 
+  // Links like nos-realisations/?type=cuisines open with that filter on.
+  var requested = new URLSearchParams(window.location.search).get("type");
+  if (requested) {
+    var match = filters.filter(function (b) {
+      return b.getAttribute("data-filter") === requested && !b.hidden;
+    })[0];
+    if (match) match.click();
+  }
+
   /* ---- 3. Photo viewer ------------------------------------------------- */
   var dialog = document.getElementById("visionneuse");
   if (!dialog || typeof dialog.showModal !== "function") return;

@@ -1,0 +1,261 @@
+/* ==========================================================================
+   Services page — sectors (alternating photo/text), types of work,
+   and the 4-step process
+   ========================================================================== */
+
+/* ---- Sectors ----------------------------------------------------------- */
+.sectors {
+  display: grid;
+  gap: clamp(3.5rem, 8vw, 6rem);
+}
+
+.sector {
+  display: grid;
+  gap: var(--sp-6);
+  align-items: center;
+  scroll-margin-top: calc(var(--header-h) + var(--sp-5));
+}
+
+@media (min-width: 64rem) {
+  .sector {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-8);
+  }
+
+  /* Every other sector puts its photo on the right */
+  .sector:nth-child(even) .sector__media {
+    order: 2;
+  }
+}
+
+.sector__media {
+  margin: 0;
+}
+
+.sector__media img {
+  width: 100%;
+  height: auto; /* let the 4:3 shape win over the photo's own size */
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: var(--bw-1) solid var(--c-black-12);
+}
+
+/* Logo panel used instead of a photo (Institutionnel) */
+.sector__logos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-6) var(--sp-5);
+  align-items: center;
+  justify-items: center;
+  aspect-ratio: 4 / 3;
+  padding: var(--sp-5);
+  border: var(--bw-1) solid var(--c-black-12);
+}
+
+.sector__logos img {
+  aspect-ratio: auto; /* undo the photo rules above */
+  border: 0;
+  width: auto;
+  max-width: 85%;
+  height: auto;
+  max-height: clamp(3.5rem, 7vw, 6rem);
+  object-fit: contain;
+  filter: grayscale(1);
+}
+
+.sector__logos img:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.sector__num {
+  font-family: var(--ff-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-caps);
+}
+
+.sector__num::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: var(--sp-2);
+  background: var(--c-red);
+  vertical-align: middle;
+}
+
+.sector__title {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-xl);
+}
+
+.sector__text {
+  margin-top: var(--sp-4);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  opacity: 0.8;
+}
+
+.sector__list {
+  display: grid;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+  padding: 0;
+  list-style: none;
+}
+
+.sector__list li {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: baseline;
+  font-weight: var(--fw-semibold);
+}
+
+.sector__list li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.875rem;
+  height: var(--bw-2);
+  background: var(--c-red);
+  transform: translateY(-0.25em);
+}
+
+/* ---- Types of work: photo tiles linking to the gallery filters -------- */
+.work-types {
+  display: grid;
+  gap: var(--sp-4);
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 40rem) {
+  .work-types {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .work-types {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.work-type {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  color: var(--c-white);
+  text-decoration: none;
+}
+
+.work-type img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+/* Light shading at the bottom only, behind the label */
+.work-type::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgb(0 0 0 / 0.75) 0%, transparent 55%);
+}
+
+.work-type__label {
+  position: absolute;
+  left: var(--sp-5);
+  right: var(--sp-5);
+  bottom: var(--sp-4);
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  text-shadow: 0 1px 8px rgb(0 0 0 / 0.5);
+}
+
+.work-type__title {
+  font-family: var(--ff-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-black);
+  line-height: var(--lh-snug);
+  text-transform: uppercase;
+}
+
+.work-type__more {
+  flex-shrink: 0;
+  font-family: var(--ff-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Red bar on hover, like the rest of the site */
+.work-type__label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--sp-4) * -1);
+  height: var(--bw-4);
+  background: var(--c-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.work-type:hover img,
+.work-type:focus-visible img {
+  transform: scale(1.04);
+}
+
+.work-type:hover .work-type__label::after,
+.work-type:focus-visible .work-type__label::after {
+  transform: scaleX(1);
+}
+
+/* ---- How it works: 4 numbered steps ------------------------------------ */
+.steps {
+  display: grid;
+  gap: var(--sp-6);
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 48rem) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .steps {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.step {
+  padding-top: var(--sp-5);
+  border-top: var(--bw-2) solid var(--c-black);
+}
+
+.step__num {
+  font-family: var(--ff-display);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-black);
+  line-height: 1;
+  color: var(--c-red);
+}
+
+.step__title {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-lg);
+}
+
+.step__text {
+  margin-top: var(--sp-3);
+  opacity: 0.8;
+}

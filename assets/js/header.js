@@ -14,10 +14,10 @@
     Array.prototype.forEach.call(document.querySelectorAll("a[href]"), function (link) {
       var href = link.getAttribute("href");
       if (/^(?:[a-z]+:|#|\/\/)/i.test(href)) return; // web links, tel:, #anchors
-      var parts = href.split("#");
-      if (parts[0].slice(-1) === "/") {
-        parts[0] += "index.html";
-        link.setAttribute("href", parts.join("#"));
+      // Split "folder/" from any "?filter" or "#section" that follows it.
+      var parts = href.match(/^([^?#]*)(.*)$/);
+      if (parts[1].slice(-1) === "/") {
+        link.setAttribute("href", parts[1] + "index.html" + parts[2]);
       }
     });
   }
