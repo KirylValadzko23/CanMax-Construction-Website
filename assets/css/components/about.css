@@ -92,22 +92,51 @@
   text-transform: uppercase;
 }
 
-/* Old newspaper clipping, shown like a framed archive photo */
+/* ---- Archives: the old newspaper clipping with its own text ------------ */
 .archive {
-  max-width: 26rem;
-  margin: var(--sp-7) 0 0;
+  display: grid;
+  gap: var(--sp-6);
+  align-items: center;
+  margin-top: clamp(3.5rem, 8vw, 6rem);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: var(--bw-1) solid var(--c-black-12);
 }
 
-.archive img {
+@media (min-width: 64rem) {
+  .archive {
+    grid-template-columns: 6fr 5fr;
+    gap: var(--sp-8);
+  }
+}
+
+.archive__media {
+  margin: 0;
+  padding: var(--sp-4);
+  background: var(--c-black-12);
+}
+
+.archive__media img {
   width: 100%;
   height: auto;
-  border: var(--bw-1) solid var(--c-black-12);
+  /* a slight tilt, like a clipping pinned to the wall */
+  transform: rotate(-1deg);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.25);
 }
 
-.archive figcaption {
-  margin-top: var(--sp-3);
+.archive__media figcaption {
+  margin-top: var(--sp-4);
   font-size: var(--fs-sm);
-  opacity: 0.7;
+  opacity: 0.75;
+}
+
+.archive__title {
+  margin-top: var(--sp-4);
+  font-size: var(--fs-xl);
+}
+
+.archive__text p:not(.eyebrow) {
+  margin-top: var(--sp-4);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
 }
 
 /* ---- Values: numbered, like the steps on the Services page ------------- */

@@ -53,11 +53,17 @@
   }
 
   var ticking = false;
+  var EDGE_SNAP = 2; // px: this close to the top or bottom counts as 0 / 100
 
   function update() {
     ticking = false;
     var max = maxScroll();
-    var progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    var y = window.scrollY;
+    var progress = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+    // With display scaling (e.g. 125 %) the browser can stop a fraction of
+    // a pixel short of the true bottom; still show the tape fully out.
+    if (max > 0 && max - y <= EDGE_SNAP) progress = 1;
+    if (y <= EDGE_SNAP) progress = 0;
     tape.style.setProperty("--p", progress);
   }
 
@@ -68,11 +74,24 @@
     }
   }
 
+  // When the page gets longer or shorter (e.g. "Voir plus" adds photos),
+  // the same spot is a different share of the page: glide to the new
+  // reading instead of jumping.
+  var adjustTimer = null;
+  function onPageResize() {
+    tape.classList.add("is-adjusting");
+    requestUpdate();
+    clearTimeout(adjustTimer);
+    adjustTimer = setTimeout(function () {
+      tape.classList.remove("is-adjusting");
+    }, 450);
+  }
+
   window.addEventListener("scroll", requestUpdate, { passive: true });
   window.addEventListener("resize", requestUpdate);
-  // Page height changes as images and fonts load.
+  // Page height changes as images and fonts load, or content is revealed.
   if ("ResizeObserver" in window) {
-    new ResizeObserver(requestUpdate).observe(document.body);
+    new ResizeObserver(onPageResize).observe(document.body);
   }
   update();
 
