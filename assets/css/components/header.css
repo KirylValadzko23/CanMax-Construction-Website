@@ -11,23 +11,6 @@
   border-bottom: var(--bw-1) solid var(--c-white-12);
 }
 
-/* Red structural line that draws in once the visitor starts scrolling */
-.site-header::after {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  bottom: calc(var(--bw-1) * -1);
-  height: var(--bw-2);
-  background: var(--c-red);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--dur-slow) var(--ease-out);
-}
-
-.site-header.is-scrolled::after {
-  transform: scaleX(1);
-}
-
 .site-header__inner {
   display: flex;
   align-items: center;

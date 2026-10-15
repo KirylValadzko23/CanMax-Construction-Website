@@ -1,7 +1,6 @@
 /* ==========================================================================
    Header behaviour
-   1. Draws the red line under the header once the page is scrolled.
-   2. Opens and closes the mobile menu (keyboard and screen-reader friendly).
+   Opens and closes the mobile menu (keyboard and screen-reader friendly).
    ========================================================================== */
 (function () {
   "use strict";
@@ -9,27 +8,7 @@
   var header = document.querySelector("[data-header]");
   if (!header) return;
 
-  /* ---- 1. Scrolled state ---------------------------------------------- */
-  var ticking = false;
-
-  function updateScrolled() {
-    header.classList.toggle("is-scrolled", window.scrollY > 8);
-    ticking = false;
-  }
-
-  window.addEventListener(
-    "scroll",
-    function () {
-      if (!ticking) {
-        ticking = true;
-        window.requestAnimationFrame(updateScrolled);
-      }
-    },
-    { passive: true }
-  );
-  updateScrolled();
-
-  /* ---- 2. Mobile menu -------------------------------------------------- */
+  /* ---- Mobile menu ----------------------------------------------------- */
   var toggle = header.querySelector("[data-menu-toggle]");
   var menu = toggle && document.getElementById(toggle.getAttribute("aria-controls"));
   if (!menu) return;
