@@ -86,8 +86,9 @@
 .site-footer__bottom {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: var(--sp-3);
+  text-align: center;
   padding-block: var(--sp-5);
   border-top: var(--bw-1) solid var(--c-white-12);
   font-size: var(--fs-sm);
