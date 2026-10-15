@@ -171,12 +171,22 @@
 }
 
 @media (min-width: 48rem) {
-  .page-hero--photo .page-hero__inner {
-    justify-content: flex-start;
+  /* The block takes the photo's own shape (set with --photo-ratio on the
+     section), so wide windows never crop the top or bottom of the photo. */
+  .page-hero--photo {
+    min-height: 0;
+    aspect-ratio: var(--photo-ratio, 16 / 9);
   }
 
+  .page-hero--photo .page-hero__inner {
+    justify-content: flex-start;
+    gap: var(--sp-5);
+  }
+
+  /* Text sits near the top so the button is visible without scrolling,
+     even when the photo is taller than the window. */
   .page-hero--photo .page-hero__content {
-    margin-block: auto;
+    margin-top: clamp(0.5rem, 2vw, 3rem);
   }
 }
 
