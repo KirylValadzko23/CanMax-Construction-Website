@@ -1,14 +1,31 @@
 /* ==========================================================================
    Header behaviour
-   Opens and closes the mobile menu (keyboard and screen-reader friendly).
+   1. Fixes page links when the site is opened by double-clicking a file.
+   2. Opens and closes the mobile menu (keyboard and screen-reader friendly).
    ========================================================================== */
 (function () {
   "use strict";
 
+  /* ---- 1. Opened from the computer (file://) -----------------------------
+     Web servers turn "services/" into "services/index.html" automatically;
+     a double-clicked file doesn't, and shows a folder listing instead.
+     Only runs for file:// — no effect on the real website.               */
+  if (window.location.protocol === "file:") {
+    Array.prototype.forEach.call(document.querySelectorAll("a[href]"), function (link) {
+      var href = link.getAttribute("href");
+      if (/^(?:[a-z]+:|#|\/\/)/i.test(href)) return; // web links, tel:, #anchors
+      var parts = href.split("#");
+      if (parts[0].slice(-1) === "/") {
+        parts[0] += "index.html";
+        link.setAttribute("href", parts.join("#"));
+      }
+    });
+  }
+
   var header = document.querySelector("[data-header]");
   if (!header) return;
 
-  /* ---- Mobile menu ----------------------------------------------------- */
+  /* ---- 2. Mobile menu -------------------------------------------------- */
   var toggle = header.querySelector("[data-menu-toggle]");
   var menu = toggle && document.getElementById(toggle.getAttribute("aria-controls"));
   if (!menu) return;
