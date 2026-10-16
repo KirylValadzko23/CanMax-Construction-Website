@@ -181,65 +181,203 @@
   object-position: 50% 65%;
 }
 
-/* ---- Facebook posts: photo, date, the post's own words ----------------- */
+/* ---- Facebook posts: laid out like a real post in the news feed --------
+   Page name + date, the post's words, a photo grid, J'aime/Commenter/Partager.
+   Kept in the site's black / white / red instead of Facebook blue. */
 .fb-posts {
   display: grid;
   gap: var(--sp-5);
+  align-items: start;
+  max-width: 68rem;
+  margin-inline: auto;
   padding: 0;
   list-style: none;
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 48rem) {
   .fb-posts {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 64rem) {
-  .fb-posts {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
 .fb-post {
-  display: flex;
-  flex-direction: column;
-  border: var(--bw-1) solid var(--c-black-12);
+  overflow: hidden;
+  border-radius: 0.5rem;
   background: var(--c-white);
+  box-shadow:
+    0 0 0 1px var(--c-black-12),
+    0 2px 6px rgb(0 0 0 / 0.08);
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.35;
 }
 
-.fb-post img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
+/* Header: round profile picture, page name, date · globe, "…" */
+.fb-post__head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4) 0;
 }
 
-.fb-post__body {
-  padding: var(--sp-4) var(--sp-4) var(--sp-5);
+.fb-post__avatar {
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--c-black-12);
+}
+
+.fb-post__head > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.fb-post__author strong {
+  font-weight: 700;
 }
 
 .fb-post__date {
-  font-family: var(--ff-display);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-bold);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  margin-top: 0.125rem;
+  font-size: 0.8125rem;
+  color: var(--c-black-70);
 }
 
-.fb-post__date::before {
-  content: "";
+.fb-post__globe {
   display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
-  margin-right: var(--sp-2);
-  background: var(--c-red);
-  vertical-align: middle;
+  width: 0.75rem;
+  height: 0.75rem;
+  vertical-align: -0.0625rem;
+}
+
+.fb-post__dots {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: var(--sp-2);
+  color: var(--c-black-70);
 }
 
 .fb-post__text {
+  padding: var(--sp-3) var(--sp-4) 0;
+}
+
+/* Photos: edge to edge, 2px white gaps, like Facebook's photo grids */
+.fb-post__media {
+  display: grid;
+  gap: 2px;
   margin-top: var(--sp-3);
-  opacity: 0.85;
+}
+
+.fb-post__media > *:not(.visually-hidden) {
+  min-width: 0;
+  min-height: 0;
+}
+
+.fb-post__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 160ms ease;
+}
+
+.fb-post__media:hover img {
+  opacity: 0.92;
+}
+
+.fb-post__media:focus-visible {
+  outline: 3px solid var(--c-red);
+  outline-offset: -3px;
+}
+
+/* One wide photo on top, three below */
+.fb-post__media--top {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.fb-post__media--top > :first-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 3 / 2;
+}
+
+.fb-post__media--top > :not(:first-child) {
+  aspect-ratio: 1;
+}
+
+/* One tall photo on the left, three stacked on the right */
+.fb-post__media--left {
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  aspect-ratio: 1;
+}
+
+.fb-post__media--left > :first-child {
+  grid-row: 1 / -1;
+}
+
+/* A single photo */
+.fb-post__media--single img {
+  aspect-ratio: 4 / 5;
+  height: auto;
+}
+
+/* "+2" over the last photo: there are more in the original post */
+.fb-post__more {
+  position: relative;
+  display: block;
+}
+
+.fb-post__more::after {
+  content: attr(data-more);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgb(0 0 0 / 0.5);
+  color: var(--c-white);
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  font-weight: 700;
+}
+
+/* J'aime · Commenter · Partager */
+.fb-post__actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-1);
+  margin: var(--sp-2) var(--sp-3) var(--sp-1);
+  padding-top: var(--sp-1);
+  border-top: 1px solid var(--c-black-12);
+  color: var(--c-black-70);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.fb-post__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  min-height: 2.25rem;
+  border-radius: 0.25rem;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.fb-post__action svg {
+  flex: none;
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.fb-post__action:hover {
+  background: rgb(0 0 0 / 0.05);
+  color: var(--c-red);
+}
+
+.fb-post__actions:focus-visible {
+  outline: 3px solid var(--c-red);
+  outline-offset: 2px;
 }
 
 .fb-posts__more {

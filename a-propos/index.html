@@ -65,6 +65,46 @@
           d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"
         />
       </symbol>
+      <!-- Facebook post icons: public globe, "…" menu, J'aime, Commenter, Partager -->
+      <symbol id="i-globe" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z" />
+        </g>
+      </symbol>
+      <symbol id="i-dots" viewBox="0 0 24 24">
+        <g fill="currentColor"><circle cx="5" cy="12" r="2" /><circle cx="12" cy="12" r="2" /><circle cx="19" cy="12" r="2" /></g>
+      </symbol>
+      <symbol id="i-like" viewBox="0 0 24 24">
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14ZM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"
+        />
+      </symbol>
+      <symbol id="i-comment" viewBox="0 0 24 24">
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"
+        />
+      </symbol>
+      <symbol id="i-share" viewBox="0 0 24 24">
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m15 14 5-5-5-5M4 20v-7a4 4 0 0 1 4-4h12"
+        />
+      </symbol>
     </svg>
 
     <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -332,34 +372,117 @@
             <p class="section-head__lead">Quelques projets partagés sur notre page Facebook.</p>
           </div>
 
+          <!-- Each card is laid out like a real Facebook post: page name and date,
+               the post's own words (none invented), a photo grid ("+2" = more photos
+               in the original post) and the J'aime / Commenter / Partager bar.
+               Photos open our gallery; the bar opens our Facebook page. -->
           <ul class="fb-posts" role="list">
-            <li class="fb-post">
-              <img src="../assets/img/facebook/cuisine-noyer-2025.jpg" width="800" height="533" alt="Cuisine en noyer avec îlot et comptoir blanc" loading="lazy" decoding="async" />
-              <div class="fb-post__body">
-                <p class="fb-post__date"><time datetime="2025-10-29">29 octobre 2025</time></p>
-                <p class="fb-post__text">« Retour sur cette magnifique cuisine réalisée pour nos clients. Nous sommes fiers de transformer vos rêves en réalité. »</p>
-              </div>
+            <li>
+              <article class="fb-post" aria-label="Publication Facebook du 29 octobre 2025">
+                <header class="fb-post__head">
+                  <img class="fb-post__avatar" src="../assets/img/brand/avatar.png" width="240" height="240" alt="" loading="lazy" />
+                  <div>
+                    <p class="fb-post__author"><strong>Canmax Construction</strong> a partagé une publication.</p>
+                    <p class="fb-post__date">
+                      <time datetime="2025-10-29">29 octobre 2025</time> ·
+                      <svg class="fb-post__globe" aria-hidden="true"><use href="#i-globe" /></svg><span class="visually-hidden">Public</span>
+                    </p>
+                  </div>
+                  <svg class="fb-post__dots" aria-hidden="true"><use href="#i-dots" /></svg>
+                </header>
+                <p class="fb-post__text">Retour sur cette magnifique cuisine réalisée pour nos clients. Nous sommes fiers de transformer vos rêves en réalité.</p>
+                <a class="fb-post__media fb-post__media--top" href="../nos-realisations/?type=cuisines">
+                  <img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-02.jpg" width="800" height="533" alt="" loading="lazy" decoding="async" />
+                  <img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-03.jpg" width="533" height="800" alt="" loading="lazy" decoding="async" />
+                  <img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-04.jpg" width="533" height="800" alt="" loading="lazy" decoding="async" />
+                  <span class="fb-post__more" data-more="+2"><img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-06.jpg" width="533" height="800" alt="" loading="lazy" decoding="async" /></span>
+                  <span class="visually-hidden">Voir les photos de cette cuisine en noyer dans nos réalisations</span>
+                </a>
+                <a class="fb-post__actions" href="https://www.facebook.com/canmaxconstruction/" target="_blank" rel="noopener" aria-label="Voir cette publication sur Facebook (nouvel onglet)">
+                  <span class="fb-post__action"><svg aria-hidden="true"><use href="#i-like" /></svg>J’aime</span>
+                  <span class="fb-post__action"><svg aria-hidden="true"><use href="#i-comment" /></svg>Commenter</span>
+                  <span class="fb-post__action"><svg aria-hidden="true"><use href="#i-share" /></svg>Partager</span>
+                </a>
+              </article>
             </li>
-            <li class="fb-post">
-              <img src="../assets/img/facebook/salle-de-bain-2021.jpg" width="800" height="1066" alt="Salle de bain moderne avec baignoire autoportante et douche vitrée" loading="lazy" decoding="async" />
-              <div class="fb-post__body">
-                <p class="fb-post__date"><time datetime="2021-01-24">24 janvier 2021</time></p>
-                <p class="fb-post__text">Rénovation de salle de bain : baignoire autoportante et douche vitrée.</p>
-              </div>
+            <li>
+              <article class="fb-post" aria-label="Publication Facebook du 24 janvier 2021">
+                <header class="fb-post__head">
+                  <img class="fb-post__avatar" src="../assets/img/brand/avatar.png" width="240" height="240" alt="" loading="lazy" />
+                  <div>
+                    <p class="fb-post__author"><strong>Canmax Construction</strong> a ajouté 6 nouvelles photos.</p>
+                    <p class="fb-post__date">
+                      <time datetime="2021-01-24">24 janvier 2021</time> ·
+                      <svg class="fb-post__globe" aria-hidden="true"><use href="#i-globe" /></svg><span class="visually-hidden">Public</span>
+                    </p>
+                  </div>
+                  <svg class="fb-post__dots" aria-hidden="true"><use href="#i-dots" /></svg>
+                </header>
+                <a class="fb-post__media fb-post__media--left" href="../nos-realisations/?type=salles-de-bain">
+                  <img src="../assets/img/projects/galerie/thumb/fb-2021-01-24-02.jpg" width="600" height="800" alt="" loading="lazy" decoding="async" />
+                  <img src="../assets/img/projects/galerie/thumb/fb-2021-01-24-04.jpg" width="600" height="800" alt="" loading="lazy" decoding="async" />
+                  <img src="../assets/img/projects/galerie/thumb/fb-2021-01-24-03.jpg" width="600" height="800" alt="" loading="lazy" decoding="async" />
+                  <span class="fb-post__more" data-more="+2"><img src="../assets/img/projects/galerie/thumb/fb-2021-01-24-01.jpg" width="600" height="800" alt="" loading="lazy" decoding="async" /></span>
+                  <span class="visually-hidden">Voir les photos de cette salle de bain dans nos réalisations</span>
+                </a>
+                <a class="fb-post__actions" href="https://www.facebook.com/canmaxconstruction/" target="_blank" rel="noopener" aria-label="Voir cette publication sur Facebook (nouvel onglet)">
+                  <span class="fb-post__action"><svg aria-hidden="true"><use href="#i-like" /></svg>J’aime</span>
+                  <span class="fb-post__action"><svg aria-hidden="true"><use href="#i-comment" /></svg>Commenter</span>
+                  <span class="fb-post__action"><svg aria-hidden="true"><use href="#i-share" /></svg>Partager</span>
+                </a>
+              </article>
             </li>
-            <li class="fb-post">
-              <img src="../assets/img/facebook/cliente-comblee-2020.jpg" width="800" height="1066" alt="Salle de bain rénovée avec douche vitrée et vanité blanche" loading="lazy" decoding="async" />
-              <div class="fb-post__body">
-                <p class="fb-post__date"><time datetime="2020-09-30">30 septembre 2020</time></p>
-                <p class="fb-post__text">« Très belle job la gang ! Une autre cliente comblée »</p>
-              </div>
+            <li>
+              <article class="fb-post" aria-label="Publication Facebook du 30 septembre 2020">
+                <header class="fb-post__head">
+                  <img class="fb-post__avatar" src="../assets/img/brand/avatar.png" width="240" height="240" alt="" loading="lazy" />
+                  <div>
+                    <p class="fb-post__author"><strong>Canmax Construction</strong></p>
+                    <p class="fb-post__date">
+                      <time datetime="2020-09-30">30 septembre 2020</time> ·
+                      <svg class="fb-post__globe" aria-hidden="true"><use href="#i-globe" /></svg><span class="visually-hidden">Public</span>
+                    </p>
+                  </div>
+                  <svg class="fb-post__dots" aria-hidden="true"><use href="#i-dots" /></svg>
+                </header>
+                <p class="fb-post__text">Très belle job la gang ! Une autre cliente comblée</p>
+                <a class="fb-post__media fb-post__media--single" href="../nos-realisations/?type=salles-de-bain">
+                  <img src="../assets/img/facebook/cliente-comblee-2020.jpg" width="800" height="1066" alt="" loading="lazy" decoding="async" />
+                  <span class="visually-hidden">Voir nos salles de bain dans nos réalisations</span>
+                </a>
+                <a class="fb-post__actions" href="https://www.facebook.com/canmaxconstruction/" target="_blank" rel="noopener" aria-label="Voir cette publication sur Facebook (nouvel onglet)">
+                  <span class="fb-post__action"><svg aria-hidden="true"><use href="#i-like" /></svg>J’aime</span>
+                  <span class="fb-post__action"><svg aria-hidden="true"><use href="#i-comment" /></svg>Commenter</span>
+                  <span class="fb-post__action"><svg aria-hidden="true"><use href="#i-share" /></svg>Partager</span>
+                </a>
+              </article>
             </li>
-            <li class="fb-post">
-              <img src="../assets/img/facebook/maison-longueuil-2020.jpg" width="800" height="1068" alt="Maison neuve en brique avec entrée et escalier, à Longueuil" loading="lazy" decoding="async" />
-              <div class="fb-post__body">
-                <p class="fb-post__date"><time datetime="2020-09-27">27 septembre 2020</time></p>
-                <p class="fb-post__text">Projet à Longueuil : maison en brique et cuisine moderne.</p>
-              </div>
+            <li>
+              <article class="fb-post" aria-label="Publication Facebook du 27 septembre 2020">
+                <header class="fb-post__head">
+                  <img class="fb-post__avatar" src="../assets/img/brand/avatar.png" width="240" height="240" alt="" loading="lazy" />
+                  <div>
+                    <p class="fb-post__author"><strong>Canmax Construction</strong> a ajouté 10 nouvelles photos — à <strong>Longueuil</strong>.</p>
+                    <p class="fb-post__date">
+                      <time datetime="2020-09-27">27 septembre 2020</time> ·
+                      <svg class="fb-post__globe" aria-hidden="true"><use href="#i-globe" /></svg><span class="visually-hidden">Public</span>
+                    </p>
+                  </div>
+                  <svg class="fb-post__dots" aria-hidden="true"><use href="#i-dots" /></svg>
+                </header>
+                <a class="fb-post__media fb-post__media--left" href="../nos-realisations/">
+                  <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-04.jpg" width="598" height="800" alt="" loading="lazy" decoding="async" />
+                  <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-03.jpg" width="598" height="800" alt="" loading="lazy" decoding="async" />
+                  <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-05.jpg" width="800" height="598" alt="" loading="lazy" decoding="async" />
+                  <span class="fb-post__more" data-more="+6"><img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-08.jpg" width="598" height="800" alt="" loading="lazy" decoding="async" /></span>
+                  <span class="visually-hidden">Voir les photos de cette maison à Longueuil dans nos réalisations</span>
+                </a>
+                <a class="fb-post__actions" href="https://www.facebook.com/canmaxconstruction/" target="_blank" rel="noopener" aria-label="Voir cette publication sur Facebook (nouvel onglet)">
+                  <span class="fb-post__action"><svg aria-hidden="true"><use href="#i-like" /></svg>J’aime</span>
+                  <span class="fb-post__action"><svg aria-hidden="true"><use href="#i-comment" /></svg>Commenter</span>
+                  <span class="fb-post__action"><svg aria-hidden="true"><use href="#i-share" /></svg>Partager</span>
+                </a>
+              </article>
             </li>
           </ul>
 
