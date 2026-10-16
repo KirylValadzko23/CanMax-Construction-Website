@@ -187,7 +187,6 @@
 .fb-posts {
   display: grid;
   gap: var(--sp-5);
-  align-items: start;
   max-width: 68rem;
   margin-inline: auto;
   padding: 0;
@@ -200,7 +199,16 @@
   }
 }
 
+/* Cards side by side share the same height; the photos take up any
+   extra room so the J'aime bars line up */
+.fb-posts > li {
+  display: flex;
+}
+
 .fb-post {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   overflow: hidden;
   border-radius: 0.5rem;
   background: var(--c-white);
@@ -262,10 +270,15 @@
   padding: var(--sp-3) var(--sp-4) 0;
 }
 
-/* Photos: edge to edge, 2px white gaps, like Facebook's photo grids */
+/* Photos: edge to edge, 2px white gaps, like Facebook's photo grids.
+   Every post gets the same square photo area (taller if its neighbour
+   has more text), so all the cards keep the same shape. */
 .fb-post__media {
   display: grid;
+  flex: 1 0 auto;
   gap: 2px;
+  aspect-ratio: 1;
+  min-height: 0;
   margin-top: var(--sp-3);
 }
 
@@ -292,33 +305,27 @@
 
 /* One wide photo on top, three below */
 .fb-post__media--top {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 2fr) minmax(0, 1fr);
 }
 
 .fb-post__media--top > :first-child {
   grid-column: 1 / -1;
-  aspect-ratio: 3 / 2;
-}
-
-.fb-post__media--top > :not(:first-child) {
-  aspect-ratio: 1;
 }
 
 /* One tall photo on the left, three stacked on the right */
 .fb-post__media--left {
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: repeat(3, 1fr);
-  aspect-ratio: 1;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  grid-template-rows: repeat(3, minmax(0, 1fr));
 }
 
 .fb-post__media--left > :first-child {
   grid-row: 1 / -1;
 }
 
-/* A single photo */
-.fb-post__media--single img {
-  aspect-ratio: 4 / 5;
-  height: auto;
+/* A single photo fills the whole square */
+.fb-post__media--single {
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
 }
 
 /* "+2" over the last photo: there are more in the original post */
