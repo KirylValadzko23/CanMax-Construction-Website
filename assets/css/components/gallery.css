@@ -166,6 +166,22 @@
   .case--featured .case__info {
     padding-top: 0;
   }
+
+  /* Every other featured card puts the photo on the right */
+  .case--reverse .case__open {
+    grid-template-columns: 2fr 3fr;
+  }
+
+  .case--reverse .case__media {
+    order: 2;
+  }
+}
+
+/* Two portrait photos side by side (same 3:2 shape as a wide photo) */
+.case__media--duo {
+  display: grid;
+  grid-template: minmax(0, 1fr) / repeat(2, minmax(0, 1fr));
+  gap: 2px;
 }
 
 /* The project cards sit right under the page title */
