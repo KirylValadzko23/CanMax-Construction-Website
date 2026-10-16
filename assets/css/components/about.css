@@ -71,6 +71,10 @@
 .story__photo img {
   width: 100%;
   height: auto;
+  /* square crop of the tall crew photo, so it sits level with the text */
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: 50% 35%;
   border: var(--bw-1) solid var(--c-black-12);
 }
 
