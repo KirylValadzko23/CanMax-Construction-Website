@@ -282,7 +282,8 @@
 
 .project[hidden],
 .filter[hidden],
-.filters[hidden] {
+.filters[hidden],
+.gallery__more [hidden] {
   display: none;
 }
 
