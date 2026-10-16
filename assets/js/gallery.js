@@ -3,8 +3,10 @@
    1. Filter buttons show/hide projects by sector (and count them).
       Buttons with no matching projects are hidden.
    2. "Voir plus" reveals photos a page at a time (data-page-size).
-   3. Clicking a project opens it full screen; arrows move between the
-      projects currently shown.
+   3. Clicking a photo opens it full screen; arrows move between the
+      photos currently shown.
+   4. Clicking a project card (data-open-project) opens the viewer with
+      only that project's photos (same data-project), in order.
    ========================================================================== */
 (function () {
   "use strict";
@@ -154,7 +156,8 @@
       ".project__cat",
       labels[project.getAttribute("data-category")] || "Nos réalisations"
     );
-    title.textContent = textOf(project, ".project__title", "Canmax Construction");
+    title.textContent =
+      project.getAttribute("data-title") || textOf(project, ".project__title", "Canmax Construction");
     counter.textContent = index + 1 + " / " + current.length;
   }
 
@@ -164,6 +167,21 @@
     current = openable();
     show(current.indexOf(trigger.closest("[data-category]")));
     dialog.showModal();
+  });
+
+  /* ---- 4. Project cards ------------------------------------------------ */
+  Array.prototype.slice.call(document.querySelectorAll("[data-open-project]")).forEach(function (card) {
+    var name = card.getAttribute("data-open-project");
+    var photos = projects.filter(function (p) {
+      return p.getAttribute("data-project") === name && p.querySelector("[data-lightbox]");
+    });
+    if (!photos.length) return;
+
+    card.addEventListener("click", function () {
+      current = photos;
+      show(0);
+      dialog.showModal();
+    });
   });
 
   dialog.querySelector("[data-lb-prev]").addEventListener("click", function () {

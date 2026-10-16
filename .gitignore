@@ -12,3 +12,6 @@ desktop.ini
 
 # Photo sorting sheets (working files, not part of the site)
 _classement/
+
+# Original photos dropped here before they are resized for the site
+_nouvelles-photos/

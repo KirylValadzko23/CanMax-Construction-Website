@@ -220,15 +220,107 @@
       </section>
 
       <!-- ================================================================
+           NOS PROJETS (project cards)
+           One card per project. data-open-project="…" opens, in the photo
+           viewer, every photo below that has the same data-project value.
+           To add a project: give its photos a data-project + data-title in
+           the gallery below, then copy a card here.
+           ================================================================ -->
+      <section class="section section--light cases-section" aria-labelledby="projets-titre">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Projets récents</p>
+            <h2 class="section-head__title" id="projets-titre">Nos projets.</h2>
+            <p class="section-head__lead">Cliquez sur un projet pour voir toutes ses photos.</p>
+          </div>
+
+          <ul class="cases" role="list">
+            <li class="case case--featured">
+              <button class="case__open" type="button" data-open-project="chalet-2026" aria-haspopup="dialog">
+                <span class="case__media">
+                  <img
+                    src="../assets/img/projects/galerie/thumb/chalet-2026-02.jpg"
+                    srcset="../assets/img/projects/galerie/thumb/chalet-2026-02.jpg 800w, ../assets/img/projects/galerie/full/chalet-2026-02.jpg 1920w"
+                    sizes="(min-width: 64rem) 60vw, 100vw"
+                    width="800"
+                    height="533"
+                    alt="Chalet contemporain au revêtement de bois foncé et de blocs de béton, en forêt"
+                    decoding="async"
+                  />
+                  <span class="case__count"><svg aria-hidden="true"><use href="#i-expand" /></svg>30 photos</span>
+                </span>
+                <span class="case__info">
+                  <span class="case__cat">Chalet · 2026</span>
+                  <span class="case__title">Chalet contemporain</span>
+                  <span class="case__text">
+                    Bois, béton et grandes fenêtres sur la forêt. Une aire ouverte lumineuse, une cuisine avec grand
+                    îlot, une véranda moustiquaire et une terrasse avec spa.
+                  </span>
+                  <span class="case__cta">Voir le projet <span aria-hidden="true">→</span></span>
+                </span>
+              </button>
+            </li>
+            <li class="case">
+              <button class="case__open" type="button" data-open-project="cuisine-2025" aria-haspopup="dialog">
+                <span class="case__media">
+                  <img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-02.jpg" width="800" height="533" alt="Cuisine en noyer avec îlot et comptoir blanc" loading="lazy" decoding="async" />
+                  <span class="case__count"><svg aria-hidden="true"><use href="#i-expand" /></svg>4 photos</span>
+                </span>
+                <span class="case__info">
+                  <span class="case__cat">Cuisine · 2025</span>
+                  <span class="case__title">Cuisine en noyer</span>
+                  <span class="case__cta">Voir le projet <span aria-hidden="true">→</span></span>
+                </span>
+              </button>
+            </li>
+            <li class="case">
+              <button class="case__open" type="button" data-open-project="salle-de-bain-2021" aria-haspopup="dialog">
+                <span class="case__media">
+                  <img src="../assets/img/projects/galerie/thumb/fb-2021-01-24-02.jpg" width="600" height="800" alt="Salle de bain avec douche vitrée et baignoire autoportante" loading="lazy" decoding="async" />
+                  <span class="case__count"><svg aria-hidden="true"><use href="#i-expand" /></svg>6 photos</span>
+                </span>
+                <span class="case__info">
+                  <span class="case__cat">Salle de bain · 2021</span>
+                  <span class="case__title">Salle de bain moderne</span>
+                  <span class="case__cta">Voir le projet <span aria-hidden="true">→</span></span>
+                </span>
+              </button>
+            </li>
+            <li class="case">
+              <button class="case__open" type="button" data-open-project="longueuil-2020" aria-haspopup="dialog">
+                <span class="case__media">
+                  <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-04.jpg" width="598" height="800" alt="Maison en brique avec escalier d'entrée, à Longueuil" loading="lazy" decoding="async" />
+                  <span class="case__count"><svg aria-hidden="true"><use href="#i-expand" /></svg>10 photos</span>
+                </span>
+                <span class="case__info">
+                  <span class="case__cat">Maison · 2020</span>
+                  <span class="case__title">Maison à Longueuil</span>
+                  <span class="case__cta">Voir le projet <span aria-hidden="true">→</span></span>
+                </span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================================================================
            GALERIE (gallery)
            Photos in assets/img/projects/galerie/ (thumb = grid, full = viewer).
            The script shows 24 photos at a time (data-page-size) with a
            « Voir plus » button. Filter buttons with no photos stay hidden.
            Each photo's data-category must match a filter's data-filter:
            cuisines, salles-de-bain, terrasses, interieurs, sous-sols, commercial.
+           Photos that belong to a project card above also carry
+           data-project (same value as the card) and data-title (viewer caption).
            ================================================================ -->
-      <section class="section gallery" aria-label="Galerie de projets" data-gallery data-page-size="24">
+      <section class="section gallery" aria-labelledby="photos-titre" data-gallery data-page-size="24">
         <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Galerie</p>
+            <h2 class="section-head__title" id="photos-titre">Toutes nos photos.</h2>
+            <p class="section-head__lead">Choisissez un type de travaux pour voir les photos qui s’y rapportent.</p>
+          </div>
+
           <div class="filters" role="group" aria-label="Filtrer les projets">
             <button class="filter" type="button" data-filter="tous" aria-pressed="true">
               Tous <span class="filter__count"></span>
@@ -257,11 +349,251 @@
           </div>
           <p class="visually-hidden" aria-live="polite" data-gallery-status></p>
 
-          <!-- Photos : d'abord les 21 photos des publications Facebook (2020 à 2025, fichiers fb-*), puis les
-               125 photos de l'ancienne galerie Wix. Classées par type de travaux (data-category).
+          <!-- Photos : d'abord les 30 photos du chalet (2026, fichiers chalet-2026-*), puis les 21 photos des
+               publications Facebook (2020 à 2025, fichiers fb-*), puis les 125 photos de l'ancienne galerie Wix. Classées par type de travaux (data-category).
                Pour déplacer une photo, changer sa valeur data-category. -->
           <ul class="projects projects--photos" role="list">
-            <li class="project" data-category="cuisines">
+            <li class="project" data-category="terrasses" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-01.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-01.jpg" width="800" height="600" alt="Vue aérienne du chalet contemporain en forêt" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="terrasses" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-02.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-02.jpg" width="800" height="533" alt="Chalet contemporain au revêtement de bois foncé et de blocs de béton" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="terrasses" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-03.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-03.jpg" width="800" height="533" alt="Façade avant du chalet, avec son entrée en blocs de béton" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="terrasses" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-04.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-04.jpg" width="800" height="533" alt="Chalet vu de l’arrière, avec ses grandes fenêtres" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="terrasses" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-05.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-05.jpg" width="800" height="533" alt="Allée menant au chalet à travers la forêt" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="terrasses" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-06.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-06.jpg" width="800" height="600" alt="Vue aérienne du chalet, du lac et des montagnes" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="terrasses" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-07.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-07.jpg" width="800" height="600" alt="Vue aérienne du chalet entouré d’arbres" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="interieurs" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-08.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-08.jpg" width="800" height="533" alt="Hall d’entrée avec poutres de bois" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="interieurs" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-09.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-09.jpg" width="800" height="533" alt="Escalier de bois avec garde-corps noir" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="interieurs" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-10.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-10.jpg" width="800" height="533" alt="Salon avec foyer et grandes fenêtres sur la forêt" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="interieurs" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-11.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-11.jpg" width="800" height="533" alt="Salon avec foyer et grand canapé" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="interieurs" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-12.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-12.jpg" width="800" height="533" alt="Aire ouverte : salon, salle à manger et cuisine" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-13.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-13.jpg" width="800" height="533" alt="Salle à manger et cuisine à aire ouverte" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-14.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-14.jpg" width="800" height="533" alt="Salle à manger sous un plafond cathédrale" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-15.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-15.jpg" width="800" height="533" alt="Cuisine avec grand îlot et luminaires suspendus" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-16.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-16.jpg" width="800" height="533" alt="Cuisine avec îlot en quartz et tabourets noirs" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-17.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-17.jpg" width="800" height="533" alt="Cuisine avec électroménagers en acier inoxydable" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="interieurs" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-18.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-18.jpg" width="800" height="533" alt="Chambre avec fenêtres en coin sur la forêt" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="interieurs" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-19.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-19.jpg" width="800" height="533" alt="Chambre avec grandes fenêtres" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="salles-de-bain" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-20.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-20.jpg" width="800" height="533" alt="Salle de bain avec douche vitrée et vanité en bois" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="salles-de-bain" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-21.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-21.jpg" width="800" height="533" alt="Salle de bain avec douche à porte coulissante" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="salles-de-bain" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-22.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-22.jpg" width="800" height="533" alt="Salle d’eau avec miroir rond et vanité en bois" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="salles-de-bain" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-23.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-23.jpg" width="800" height="533" alt="Douche vitrée à cadre noir" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="interieurs" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-24.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-24.jpg" width="800" height="533" alt="Escalier de bois vers l’étage" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="sous-sols" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-25.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-25.jpg" width="800" height="533" alt="Sous-sol aménagé avec salle de jeux" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="terrasses" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-26.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-26.jpg" width="800" height="533" alt="Véranda moustiquaire avec table à manger" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="terrasses" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-27.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-27.jpg" width="800" height="533" alt="Grande terrasse avec foyer extérieur et spa" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="terrasses" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-28.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-28.jpg" width="800" height="533" alt="Terrasse avec chaises longues" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="terrasses" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-29.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-29.jpg" width="800" height="533" alt="Terrasse avec spa, en bordure de la forêt" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="terrasses" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/chalet-2026-30.jpg" data-full="../assets/img/projects/galerie/full/chalet-2026-30.jpg" width="800" height="600" alt="Vue aérienne de la terrasse et de la véranda" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-02.jpg" data-full="../assets/img/projects/galerie/full/fb-2025-10-29-cuisine-02.jpg" width="800" height="533" alt="Cuisine, réalisation de Canmax Construction (2025)" loading="lazy" decoding="async" />
@@ -269,7 +601,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="cuisines">
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-03.jpg" data-full="../assets/img/projects/galerie/full/fb-2025-10-29-cuisine-03.jpg" width="533" height="800" alt="Cuisine, réalisation de Canmax Construction (2025)" loading="lazy" decoding="async" />
@@ -277,7 +609,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="cuisines">
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-04.jpg" data-full="../assets/img/projects/galerie/full/fb-2025-10-29-cuisine-04.jpg" width="533" height="800" alt="Cuisine, réalisation de Canmax Construction (2025)" loading="lazy" decoding="async" />
@@ -285,7 +617,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="cuisines">
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-06.jpg" data-full="../assets/img/projects/galerie/full/fb-2025-10-29-cuisine-06.jpg" width="533" height="800" alt="Cuisine, réalisation de Canmax Construction (2025)" loading="lazy" decoding="async" />
@@ -293,7 +625,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="salles-de-bain">
+            <li class="project" data-category="salles-de-bain" data-project="salle-de-bain-2021" data-title="Salle de bain moderne (2021)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2021-01-24-01.jpg" data-full="../assets/img/projects/galerie/full/fb-2021-01-24-01.jpg" width="600" height="800" alt="Salle de bain, réalisation de Canmax Construction (2021)" loading="lazy" decoding="async" />
@@ -301,7 +633,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="salles-de-bain">
+            <li class="project" data-category="salles-de-bain" data-project="salle-de-bain-2021" data-title="Salle de bain moderne (2021)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2021-01-24-02.jpg" data-full="../assets/img/projects/galerie/full/fb-2021-01-24-02.jpg" width="600" height="800" alt="Salle de bain, réalisation de Canmax Construction (2021)" loading="lazy" decoding="async" />
@@ -309,7 +641,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="salles-de-bain">
+            <li class="project" data-category="salles-de-bain" data-project="salle-de-bain-2021" data-title="Salle de bain moderne (2021)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2021-01-24-03.jpg" data-full="../assets/img/projects/galerie/full/fb-2021-01-24-03.jpg" width="600" height="800" alt="Salle de bain, réalisation de Canmax Construction (2021)" loading="lazy" decoding="async" />
@@ -317,7 +649,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="salles-de-bain">
+            <li class="project" data-category="salles-de-bain" data-project="salle-de-bain-2021" data-title="Salle de bain moderne (2021)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2021-01-24-04.jpg" data-full="../assets/img/projects/galerie/full/fb-2021-01-24-04.jpg" width="600" height="800" alt="Salle de bain, réalisation de Canmax Construction (2021)" loading="lazy" decoding="async" />
@@ -325,7 +657,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="salles-de-bain">
+            <li class="project" data-category="salles-de-bain" data-project="salle-de-bain-2021" data-title="Salle de bain moderne (2021)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2021-01-24-05.jpg" data-full="../assets/img/projects/galerie/full/fb-2021-01-24-05.jpg" width="600" height="800" alt="Salle de bain, réalisation de Canmax Construction (2021)" loading="lazy" decoding="async" />
@@ -333,7 +665,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="salles-de-bain">
+            <li class="project" data-category="salles-de-bain" data-project="salle-de-bain-2021" data-title="Salle de bain moderne (2021)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2021-01-24-06.jpg" data-full="../assets/img/projects/galerie/full/fb-2021-01-24-06.jpg" width="600" height="800" alt="Salle de bain, réalisation de Canmax Construction (2021)" loading="lazy" decoding="async" />
@@ -349,7 +681,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="terrasses">
+            <li class="project" data-category="terrasses" data-project="longueuil-2020" data-title="Maison à Longueuil (2020)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-04.jpg" data-full="../assets/img/projects/galerie/full/fb-2020-09-27-longueuil-04.jpg" width="598" height="800" alt="Maison et aménagement extérieur à Longueuil, réalisation de Canmax Construction (2020)" loading="lazy" decoding="async" />
@@ -357,7 +689,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="terrasses">
+            <li class="project" data-category="terrasses" data-project="longueuil-2020" data-title="Maison à Longueuil (2020)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-01.jpg" data-full="../assets/img/projects/galerie/full/fb-2020-09-27-longueuil-01.jpg" width="598" height="800" alt="Maison et aménagement extérieur à Longueuil, réalisation de Canmax Construction (2020)" loading="lazy" decoding="async" />
@@ -365,7 +697,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="terrasses">
+            <li class="project" data-category="terrasses" data-project="longueuil-2020" data-title="Maison à Longueuil (2020)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-02.jpg" data-full="../assets/img/projects/galerie/full/fb-2020-09-27-longueuil-02.jpg" width="800" height="598" alt="Maison et aménagement extérieur à Longueuil, réalisation de Canmax Construction (2020)" loading="lazy" decoding="async" />
@@ -373,7 +705,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="terrasses">
+            <li class="project" data-category="terrasses" data-project="longueuil-2020" data-title="Maison à Longueuil (2020)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-03.jpg" data-full="../assets/img/projects/galerie/full/fb-2020-09-27-longueuil-03.jpg" width="598" height="800" alt="Maison et aménagement extérieur à Longueuil, réalisation de Canmax Construction (2020)" loading="lazy" decoding="async" />
@@ -381,7 +713,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="cuisines">
+            <li class="project" data-category="cuisines" data-project="longueuil-2020" data-title="Maison à Longueuil (2020)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-05.jpg" data-full="../assets/img/projects/galerie/full/fb-2020-09-27-longueuil-05.jpg" width="800" height="598" alt="Cuisine à Longueuil, réalisation de Canmax Construction (2020)" loading="lazy" decoding="async" />
@@ -389,7 +721,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="cuisines">
+            <li class="project" data-category="cuisines" data-project="longueuil-2020" data-title="Maison à Longueuil (2020)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-06.jpg" data-full="../assets/img/projects/galerie/full/fb-2020-09-27-longueuil-06.jpg" width="598" height="800" alt="Cuisine à Longueuil, réalisation de Canmax Construction (2020)" loading="lazy" decoding="async" />
@@ -397,7 +729,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="cuisines">
+            <li class="project" data-category="cuisines" data-project="longueuil-2020" data-title="Maison à Longueuil (2020)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-07.jpg" data-full="../assets/img/projects/galerie/full/fb-2020-09-27-longueuil-07.jpg" width="598" height="800" alt="Cuisine à Longueuil, réalisation de Canmax Construction (2020)" loading="lazy" decoding="async" />
@@ -405,7 +737,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="cuisines">
+            <li class="project" data-category="cuisines" data-project="longueuil-2020" data-title="Maison à Longueuil (2020)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-08.jpg" data-full="../assets/img/projects/galerie/full/fb-2020-09-27-longueuil-08.jpg" width="598" height="800" alt="Cuisine à Longueuil, réalisation de Canmax Construction (2020)" loading="lazy" decoding="async" />
@@ -413,7 +745,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="cuisines">
+            <li class="project" data-category="cuisines" data-project="longueuil-2020" data-title="Maison à Longueuil (2020)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-09.jpg" data-full="../assets/img/projects/galerie/full/fb-2020-09-27-longueuil-09.jpg" width="598" height="800" alt="Cuisine à Longueuil, réalisation de Canmax Construction (2020)" loading="lazy" decoding="async" />
@@ -421,7 +753,7 @@
                 </span>
               </button>
             </li>
-            <li class="project" data-category="cuisines">
+            <li class="project" data-category="cuisines" data-project="longueuil-2020" data-title="Maison à Longueuil (2020)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
                   <img src="../assets/img/projects/galerie/thumb/fb-2020-09-27-longueuil-10.jpg" data-full="../assets/img/projects/galerie/full/fb-2020-09-27-longueuil-10.jpg" width="598" height="800" alt="Cuisine à Longueuil, réalisation de Canmax Construction (2020)" loading="lazy" decoding="async" />
@@ -1532,7 +1864,7 @@
       <div class="lightbox__footer">
         <button class="lightbox__btn" type="button" data-lb-prev>
           <svg aria-hidden="true"><use href="#i-arrow-left" /></svg>
-          <span class="visually-hidden">Projet précédent</span>
+          <span class="visually-hidden">Photo précédente</span>
         </button>
         <div class="lightbox__caption">
           <p class="project__cat" data-lb-cat></p>
@@ -1540,7 +1872,7 @@
         </div>
         <button class="lightbox__btn" type="button" data-lb-next>
           <svg aria-hidden="true"><use href="#i-arrow-right" /></svg>
-          <span class="visually-hidden">Projet suivant</span>
+          <span class="visually-hidden">Photo suivante</span>
         </button>
       </div>
     </dialog>

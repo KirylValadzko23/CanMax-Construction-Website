@@ -8,9 +8,169 @@
   margin-bottom: var(--sp-6);
 }
 
-/* On the Nos réalisations page the title block sits right above */
-.page-hero + .gallery {
-  padding-top: clamp(2rem, 4vw, 3rem);
+/* ---- Project cards (Nos projets) --------------------------------------
+   One card per job; the first one is wide and featured. Clicking a card
+   opens that project's photos in the viewer. White section.            */
+.cases {
+  display: grid;
+  gap: var(--sp-6) var(--sp-5);
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 48rem) {
+  .cases {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .case--featured {
+    grid-column: 1 / -1;
+  }
+}
+
+.case__open {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  color: inherit;
+}
+
+.case__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--c-black);
+}
+
+.case__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.case__open:hover .case__media img,
+.case__open:focus-visible .case__media img {
+  transform: scale(1.04);
+}
+
+/* Red bar under the photo on hover, like the photo grid */
+.case__media::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: var(--bw-4);
+  background: var(--c-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.case__open:hover .case__media::after,
+.case__open:focus-visible .case__media::after {
+  transform: scaleX(1);
+}
+
+/* "30 photos" tag in the corner */
+.case__count {
+  position: absolute;
+  left: var(--sp-3);
+  bottom: var(--sp-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-3);
+  background: var(--c-black);
+  color: var(--c-white);
+  font-family: var(--ff-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case__count svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.case__info {
+  display: block;
+  padding-top: var(--sp-4);
+}
+
+.case__cat {
+  display: block;
+  font-family: var(--ff-display);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.case__title {
+  display: block;
+  margin-top: var(--sp-1);
+  font-family: var(--ff-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-black);
+  line-height: var(--lh-snug);
+  text-transform: uppercase;
+}
+
+.case__text {
+  display: block;
+  max-width: 34rem;
+  margin-top: var(--sp-3);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  opacity: 0.8;
+}
+
+.case__cta {
+  display: inline-block;
+  margin-top: var(--sp-3);
+  padding-bottom: 2px;
+  border-bottom: var(--bw-2) solid var(--c-red);
+  font-family: var(--ff-display);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case__open:focus-visible {
+  outline: var(--bw-2) solid var(--c-red);
+  outline-offset: 4px;
+}
+
+/* Featured card: big photo with the text beside it on wide screens */
+.case--featured .case__media {
+  aspect-ratio: 3 / 2;
+}
+
+.case--featured .case__title {
+  font-size: var(--fs-xl);
+}
+
+@media (min-width: 64rem) {
+  .case--featured .case__open {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: var(--sp-7);
+    align-items: center;
+  }
+
+  .case--featured .case__info {
+    padding-top: 0;
+  }
+}
+
+/* The project cards sit right under the page title */
+.page-hero + .cases-section {
+  padding-top: clamp(2.5rem, 5vw, 4rem);
 }
 
 /* ---- Filter buttons --------------------------------------------------- */
