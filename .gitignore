@@ -15,3 +15,6 @@ _classement/
 
 # Original photos dropped here before they are resized for the site
 _nouvelles-photos/
+
+# Copies of the older gallery photos, for sorting (delete the ones to drop)
+_tri-galerie/
