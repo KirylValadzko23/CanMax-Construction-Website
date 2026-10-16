@@ -2,6 +2,17 @@
    Carrières page — photo hero, why join us, trades, application form
    ========================================================================== */
 
+/* ---- Top photo: the whole team stays in view on phones -----------------
+   A tall phone screen would crop the group photo to a few people, so on
+   phones the photo shows complete at the top, with the text on black
+   below it. Wider screens fill the block as usual.                     */
+@media (max-width: 47.99rem) {
+  .page-hero--team .page-hero__media img {
+    object-fit: contain;
+    object-position: 50% 0;
+  }
+}
+
 /* ---- Why join us (numbered, like the service cards) -------------------- */
 .perks {
   display: grid;
@@ -48,27 +59,18 @@
   opacity: 0.8;
 }
 
-/* ---- Life on our sites: two photos ------------------------------------
-   A wide photo and a tall one; the 16:9 column split makes them the same
-   height side by side.                                                  */
+/* ---- Life on our sites: team photo with a short text beside it -------- */
 .worksite {
+  display: grid;
+  gap: var(--sp-5);
+  align-items: center;
   margin-top: var(--sp-8);
 }
 
-.worksite__title {
-  font-size: var(--fs-lg);
-}
-
-.worksite__photos {
-  display: grid;
-  gap: var(--sp-4);
-  margin-top: var(--sp-4);
-}
-
 @media (min-width: 48rem) {
-  .worksite__photos {
-    grid-template-columns: 16fr 9fr;
-    gap: var(--sp-5);
+  .worksite {
+    grid-template-columns: 2fr 3fr;
+    gap: var(--sp-7);
   }
 }
 
@@ -82,10 +84,15 @@
   border: var(--bw-1) solid var(--c-black-12);
 }
 
-.worksite__photo figcaption {
-  margin-top: var(--sp-3);
-  font-size: var(--fs-sm);
-  opacity: 0.7;
+.worksite__title {
+  font-size: var(--fs-xl);
+}
+
+.worksite__text p {
+  max-width: 32rem;
+  margin-top: var(--sp-4);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  opacity: 0.8;
 }
 
 /* ---- Trades we hire ---------------------------------------------------- */

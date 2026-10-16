@@ -180,9 +180,18 @@
   color: var(--c-white-70);
 }
 
-/* ---- Top photo: keep the van and house in view ------------------------- */
+/* ---- Top photo: keep the whole van in view ----------------------------
+   The van fills the lower half of the photo, so the photo is anchored to
+   the bottom (the sky gets cropped, not the wheels). On phones the tall
+   block also crops the sides: centre on the Canmax lettering.          */
 .page-hero--about .page-hero__media img {
-  object-position: 50% 65%;
+  object-position: 74% 100%;
+}
+
+@media (min-width: 48rem) {
+  .page-hero--about .page-hero__media img {
+    object-position: 50% 100%;
+  }
 }
 
 /* ---- Facebook posts: laid out like a real post in the news feed --------
