@@ -278,19 +278,36 @@
                 </span>
               </button>
             </li>
-            <li class="case">
+            <li class="case case--featured">
               <button class="case__open" type="button" data-open-project="cuisine-2025" aria-haspopup="dialog">
                 <span class="case__media">
-                  <img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-02.jpg" width="800" height="533" alt="Cuisine en noyer avec îlot et comptoir blanc" loading="lazy" decoding="async" />
-                  <span class="case__count"><svg aria-hidden="true"><use href="#i-expand" /></svg>4 photos</span>
+                  <img
+                    src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-01.jpg"
+                    srcset="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-01.jpg 800w, ../assets/img/projects/galerie/full/cuisine-noyer-2025-01.jpg 1920w"
+                    sizes="(min-width: 64rem) 60vw, 100vw"
+                    width="800"
+                    height="533"
+                    alt="Cuisine en noyer avec îlot à cascade et grandes fenêtres"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="case__count"><svg aria-hidden="true"><use href="#i-expand" /></svg>16 photos</span>
                 </span>
                 <span class="case__info">
                   <span class="case__cat">Cuisine · 2025</span>
                   <span class="case__title">Cuisine en noyer</span>
+                  <span class="case__text">
+                    Armoires en noyer du plancher au plafond, îlot à cascade aux façades cannelées et électroménagers
+                    encastrés, dans une pièce baignée de lumière.
+                  </span>
                   <span class="case__cta">Voir le projet <span aria-hidden="true">→</span></span>
                 </span>
               </button>
             </li>
+          </ul>
+
+          <!-- Smaller cards: they share the row evenly (2 or 3 per row) -->
+          <ul class="cases cases--small" role="list">
             <li class="case">
               <button class="case__open" type="button" data-open-project="salle-de-bain-2021" aria-haspopup="dialog">
                 <span class="case__media">
@@ -368,8 +385,10 @@
           <p class="visually-hidden" aria-live="polite" data-gallery-status></p>
 
           <!-- Photos : d'abord les 30 photos du chalet (2026, fichiers chalet-2026-*), les 11 photos du Chili Club
-               (2026, fichiers chili-club-2026-*), puis les 21 photos des
-               publications Facebook (2020 à 2025, fichiers fb-*), puis les 125 photos de l'ancienne galerie Wix. Classées par type de travaux (data-category).
+               (2026, fichiers chili-club-2026-*), les 16 photos professionnelles de la cuisine en noyer (2025,
+               fichiers cuisine-noyer-2025-*, elles remplacent les copies Facebook fb-2025-*), puis les 17 photos
+               des autres publications Facebook (2020 et 2021, fichiers fb-*), puis les 125 photos de l'ancienne
+               galerie Wix. Classées par type de travaux (data-category).
                Pour déplacer une photo, changer sa valeur data-category. -->
           <ul class="projects projects--photos" role="list">
             <li class="project" data-category="terrasses" data-project="chalet-2026" data-title="Chalet contemporain (2026)">
@@ -703,7 +722,7 @@
             <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
-                  <img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-02.jpg" data-full="../assets/img/projects/galerie/full/fb-2025-10-29-cuisine-02.jpg" width="800" height="533" alt="Cuisine, réalisation de Canmax Construction (2025)" loading="lazy" decoding="async" />
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-01.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-01.jpg" width="800" height="533" alt="Cuisine en noyer avec îlot à cascade et grandes fenêtres" loading="lazy" decoding="async" />
                   <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
                 </span>
               </button>
@@ -711,7 +730,7 @@
             <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
-                  <img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-03.jpg" data-full="../assets/img/projects/galerie/full/fb-2025-10-29-cuisine-03.jpg" width="533" height="800" alt="Cuisine, réalisation de Canmax Construction (2025)" loading="lazy" decoding="async" />
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-02.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-02.jpg" width="800" height="533" alt="Îlot à cascade avec façades cannelées en noyer" loading="lazy" decoding="async" />
                   <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
                 </span>
               </button>
@@ -719,7 +738,7 @@
             <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
-                  <img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-04.jpg" data-full="../assets/img/projects/galerie/full/fb-2025-10-29-cuisine-04.jpg" width="533" height="800" alt="Cuisine, réalisation de Canmax Construction (2025)" loading="lazy" decoding="async" />
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-03.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-03.jpg" width="800" height="533" alt="Cuisine en noyer vue depuis la salle à manger" loading="lazy" decoding="async" />
                   <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
                 </span>
               </button>
@@ -727,7 +746,103 @@
             <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
               <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
                 <span class="project__media">
-                  <img src="../assets/img/projects/galerie/thumb/fb-2025-10-29-cuisine-06.jpg" data-full="../assets/img/projects/galerie/full/fb-2025-10-29-cuisine-06.jpg" width="533" height="800" alt="Cuisine, réalisation de Canmax Construction (2025)" loading="lazy" decoding="async" />
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-04.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-04.jpg" width="800" height="533" alt="Mur d'armoires en noyer avec électroménagers encastrés" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-05.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-05.jpg" width="533" height="800" alt="Armoires en noyer du plancher au plafond et luminaires suspendus" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-06.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-06.jpg" width="533" height="800" alt="Îlot à cascade sous un luminaire suspendu" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-07.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-07.jpg" width="800" height="533" alt="Îlot en noyer devant les fenêtres de la cuisine" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-08.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-08.jpg" width="533" height="800" alt="Côté de l'îlot en noyer avec tiroirs sans poignées" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-09.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-09.jpg" width="800" height="533" alt="Tiroirs en noyer et extrémité de l'îlot en pierre" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-10.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-10.jpg" width="533" height="800" alt="Allée entre les armoires en noyer, vers la fenêtre" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-11.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-11.jpg" width="533" height="800" alt="Tiroir intérieur ouvert dans une armoire en noyer" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-12.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-12.jpg" width="533" height="800" alt="Fours encastrés dans les armoires en noyer" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-13.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-13.jpg" width="533" height="800" alt="Comptoir de l'îlot avec fleurs et four encastré" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-14.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-14.jpg" width="533" height="800" alt="Détail des façades cannelées en noyer de l'îlot" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-15.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-15.jpg" width="533" height="800" alt="Plaque de cuisson intégrée au comptoir de l'îlot" loading="lazy" decoding="async" />
+                  <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
+                </span>
+              </button>
+            </li>
+            <li class="project" data-category="cuisines" data-project="cuisine-2025" data-title="Cuisine en noyer (2025)">
+              <button class="project__open" type="button" data-lightbox aria-haspopup="dialog">
+                <span class="project__media">
+                  <img src="../assets/img/projects/galerie/thumb/cuisine-noyer-2025-16.jpg" data-full="../assets/img/projects/galerie/full/cuisine-noyer-2025-16.jpg" width="533" height="800" alt="Le chien de la maison devant les armoires en noyer" loading="lazy" decoding="async" />
                   <span class="project__zoom" aria-hidden="true"><svg><use href="#i-expand" /></svg></span>
                 </span>
               </button>

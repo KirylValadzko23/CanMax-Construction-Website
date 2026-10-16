@@ -30,8 +30,8 @@ Dossier : `2025-10-29-cuisine/` (6 photos)
 > Retour sur cette magnifique cuisine réalisée pour nos clients. Nous sommes fiers de transformer vos
 > rêves en réalité.
 
-(Publication partagée avec un message de Bofronts : « Welcome into our clients' home: a
-refined space where design and functionality come together in perfect harmony. »)
+(Publication partagée depuis Bofronts. Noms des clients retirés : le projet reste anonyme sur le site.
+Photos professionnelles du même projet ajoutées en octobre 2026 : fichiers cuisine-noyer-2025-*.)
 
 ## 24 janvier 2021 — Projet (sans description)
 Dossier : `2021-01-24/` (6 photos)

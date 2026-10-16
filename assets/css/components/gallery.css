@@ -18,13 +18,21 @@
   list-style: none;
 }
 
-@media (min-width: 48rem) {
-  .cases {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+/* Featured cards stack; the smaller cards below share their row evenly,
+   whether there are 2 or 3 of them */
+.cases + .cases {
+  margin-top: var(--sp-7);
+}
 
-  .case--featured {
-    grid-column: 1 / -1;
+@media (min-width: 48rem) {
+  .cases--small {
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .cases:not(.cases--small) {
+    gap: var(--sp-8);
   }
 }
 
