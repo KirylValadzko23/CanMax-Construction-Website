@@ -1,0 +1,6 @@
+# All search engines may visit every page.
+# The "merci" pages and the 404 page hide themselves with a "noindex" tag.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.canmaxconstruction.ca/sitemap.xml

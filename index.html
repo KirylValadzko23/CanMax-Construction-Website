@@ -17,6 +17,12 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_CA" />
     <meta property="og:site_name" content="Canmax Construction" />
+    <meta property="og:url" content="https://www.canmaxconstruction.ca/" />
+    <meta property="og:image" content="https://www.canmaxconstruction.ca/assets/img/og/accueil.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="L'équipe Canmax, casquée et en harnais, monte la charpente d'un bâtiment" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:title" content="Canmax Construction | Entrepreneur général à Montréal" />
     <meta
       property="og:description"
@@ -45,6 +51,46 @@
 
     <script src="assets/js/header.js" defer></script>
     <script src="assets/js/tape-scroll.js" defer></script>
+
+    <!-- Business details for Google (name, phone, address, hours): shown in
+         search results and on Maps. Not visible on the page. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        "@id": "https://www.canmaxconstruction.ca/#entreprise",
+        "name": "Canmax Construction",
+        "legalName": "Canmax Construction Inc.",
+        "url": "https://www.canmaxconstruction.ca/",
+        "logo": "https://www.canmaxconstruction.ca/assets/img/brand/logo.png",
+        "image": "https://www.canmaxconstruction.ca/assets/img/og/accueil.jpg",
+        "description": "Entrepreneur général familial à Montréal depuis 1991. Construction et rénovation résidentielles, commerciales et institutionnelles.",
+        "telephone": "+1-514-937-3400",
+        "foundingDate": "1991",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "665, rue Charlevoix",
+          "addressLocality": "Montréal",
+          "addressRegion": "QC",
+          "postalCode": "H3K 2X8",
+          "addressCountry": "CA"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": { "@type": "City", "name": "Montréal" },
+        "knowsLanguage": "fr",
+        "sameAs": [
+          "https://www.facebook.com/canmaxconstruction/",
+          "https://ca.linkedin.com/company/canmax-construction"
+        ]
+      }
+    </script>
   </head>
 
   <body>

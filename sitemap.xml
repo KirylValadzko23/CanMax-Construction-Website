@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- List of the site's pages for Google and other search engines.
+     When a page is added, add it here too (the "merci" and 404 pages stay out). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.canmaxconstruction.ca/</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://www.canmaxconstruction.ca/services/</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://www.canmaxconstruction.ca/nos-realisations/</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://www.canmaxconstruction.ca/a-propos/</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://www.canmaxconstruction.ca/faites-partie-de-la-famille/</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+  <url>
+    <loc>https://www.canmaxconstruction.ca/soumission/</loc>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+</urlset>
