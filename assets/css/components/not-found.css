@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Page introuvable (404) — title, two buttons, links to the main pages
+   ========================================================================== */
+
+/* Tall enough that the footer never jumps up on a big screen */
+.not-found {
+  min-height: calc(100svh - var(--header-h));
+}
+
+.not-found__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+.not-found__nav {
+  margin-top: clamp(3rem, 7vw, 5rem);
+}
+
+.not-found__title {
+  font-size: var(--fs-lg);
+}
+
+.not-found__links {
+  display: grid;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 40rem) {
+  .not-found__links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .not-found__links {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Each link is a box: page name, a short line, an arrow that slides on hover */
+.not-found__links a {
+  position: relative;
+  display: block;
+  height: 100%;
+  padding: var(--sp-4) calc(var(--sp-5) + 1.5rem) var(--sp-4) var(--sp-5);
+  border: var(--bw-1) solid var(--c-white-40);
+  color: var(--c-white);
+  text-decoration: none;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+.not-found__links a::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: var(--sp-5);
+  font-family: var(--ff-display);
+  font-size: var(--fs-md);
+  color: var(--c-red);
+  transform: translateY(-50%);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.not-found__links a:hover,
+.not-found__links a:focus-visible {
+  border-color: var(--c-white);
+  background: var(--c-white-06);
+}
+
+.not-found__links a:hover::after {
+  transform: translate(0.25rem, -50%);
+}
+
+.not-found__name {
+  display: block;
+  font-family: var(--ff-display);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.not-found__desc {
+  display: block;
+  margin-top: var(--sp-1);
+  font-size: var(--fs-sm);
+  color: var(--c-white-70);
+}
