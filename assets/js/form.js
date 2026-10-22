@@ -159,8 +159,19 @@
 
       var button = form.querySelector('[type="submit"]');
       if (button) {
+        button.dataset.label = button.textContent;
         button.disabled = true;
         button.textContent = "Envoi en cours…";
+      }
+    });
+
+    // Coming back with the browser's Back button can restore the page as it
+    // was, with the button still locked: unlock it so the form can be resent.
+    window.addEventListener("pageshow", function (event) {
+      var button = form.querySelector('[type="submit"]');
+      if (event.persisted && button && button.disabled) {
+        button.disabled = false;
+        button.textContent = button.dataset.label || button.textContent;
       }
     });
   }

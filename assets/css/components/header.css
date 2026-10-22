@@ -20,7 +20,10 @@
 
 /* ---- Logo -------------------------------------------------------------- */
 .site-header__logo {
+  display: flex;
   flex-shrink: 0;
+  align-items: center;
+  min-height: 2.75rem; /* comfortable tap area; the logo itself stays the same size */
 }
 
 .site-header__logo img {
