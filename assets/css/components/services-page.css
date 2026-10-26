@@ -40,6 +40,11 @@
   border: var(--bw-1) solid var(--c-black-12);
 }
 
+/* Chili Club lobby: tall photo in a wide frame, keep the logo wall and counter */
+.sector__media .sector__img--lobby {
+  object-position: 50% 45%;
+}
+
 /* Logo panel used instead of a photo (Institutionnel) */
 .sector__logos {
   display: grid;
@@ -59,8 +64,7 @@
   max-width: 85%;
   height: auto;
   max-height: clamp(3.5rem, 7vw, 6rem);
-  object-fit: contain;
-  filter: grayscale(1);
+  object-fit: contain; /* logos shown in their own colours */
 }
 
 .sector__logos img:last-child:nth-child(odd) {

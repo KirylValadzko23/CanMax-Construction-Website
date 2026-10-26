@@ -53,15 +53,5 @@
   max-width: 85%;
   height: auto;
   max-height: 5.5rem;
-  object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.9;
-  transition:
-    filter var(--dur-base) var(--ease-out),
-    opacity var(--dur-base) var(--ease-out);
-}
-
-.clients__item:hover img {
-  filter: none;
-  opacity: 1;
+  object-fit: contain; /* logos shown in their own colours */
 }
