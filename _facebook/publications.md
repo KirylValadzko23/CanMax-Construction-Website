@@ -2,14 +2,14 @@
 
 Source : https://www.facebook.com/canmaxconstruction/ (pages publiques, consultées le 15 octobre 2026).
 Les photos sont rangées dans un dossier par publication. Le grand envoi du 7 août 2020 (168 photos)
-n'a pas été téléchargé : ce sont les mêmes photos que l'ancienne galerie Wix, déjà sur le site.
+n'a pas été téléchargé : ce sont des photos déjà présentes dans la galerie du site.
 
 Présentation de la page :
 > Que ce soit dans la construction ou la rénovation de vos projets résidentiels, commerciaux ou
 > institutionnels, notre entreprise répondra à vos besoins. Vous offrir un service professionnel et
 > impeccable est notre priorité.
 
-Coordonnées affichées : (514) 937-3400 · info@canmaxconstruction.ca · canmaxconstruction.ca
+Coordonnées affichées : (514) 937-3400 · info@canmaxconstruction.ca
 
 ---
 
@@ -25,7 +25,7 @@ Dossier : `2026-06-25-restauration-inondation/` (1 photo)
 > let's put this behind you, quickly. 514-937-3400
 
 ## 29 octobre 2025 — Cuisine
-Dossier : `2025-10-29-cuisine/` (6 photos)
+Dossier : `2025-10-29-cuisine/` (4 photos ; les 2 où l'on voit les clients ont été retirées)
 
 > Retour sur cette magnifique cuisine réalisée pour nos clients. Nous sommes fiers de transformer vos
 > rêves en réalité.

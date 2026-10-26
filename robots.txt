@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.canmaxconstruction.ca/sitemap.xml
+Sitemap: https://kirylvaladzko23.github.io/CanMax-Construction-Website/sitemap.xml
