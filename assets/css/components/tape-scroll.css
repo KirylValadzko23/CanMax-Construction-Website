@@ -128,6 +128,24 @@ html.has-tape::-webkit-scrollbar {
   }
 }
 
+/* Touch screens wider than a phone (iPad, Android tablets): the same slim,
+   number-free strip as on phones, which never catches a swipe. Computers
+   with a mouse or trackpad keep the full tape. */
+@media (min-width: 48rem) and (pointer: coarse) {
+  :root {
+    --tape-w: 0.625rem;
+    --tip-h: 0.25rem;
+  }
+
+  .tape.is-visible .tape__body {
+    pointer-events: none;
+  }
+
+  .tape__tip {
+    left: 0;
+  }
+}
+
 @media (min-width: 48rem) and (pointer: fine) {
   .tape__body {
     cursor: pointer;
@@ -182,7 +200,8 @@ html.has-tape::-webkit-scrollbar {
   transform: translateY(calc(var(--y) * (-100% - 4px) + 2px));
 }
 
-@media (max-width: 47.99rem) {
+/* Phones and touch tablets: no numbers, only the longer ticks */
+@media (max-width: 47.99rem), (pointer: coarse) {
   .tape__label {
     display: none;
   }
