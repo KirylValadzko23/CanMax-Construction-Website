@@ -1,0 +1,5 @@
+# Netlify rules (GitHub Pages ignores this file).
+# The archive and tool folders are kept in the repository only: never serve
+# them on the website, show the "page introuvable" page instead.
+/_facebook/*   /404.html   404!
+/.claude/*     /404.html   404!
