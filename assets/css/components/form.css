@@ -235,6 +235,16 @@
   color: var(--c-white-70);
 }
 
+.form__privacy a {
+  color: var(--c-white);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.form__privacy a:hover {
+  color: var(--c-red);
+}
+
 .form__submit {
   justify-self: start;
 }
