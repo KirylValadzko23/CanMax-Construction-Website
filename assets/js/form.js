@@ -4,7 +4,8 @@
      shown under each field (screen-reader friendly).
    - Groups marked data-one-of="a b" need at least one of those fields
      (e.g. a CV link OR a CV file).
-   - File size/type limits, file name preview, link clean-up.
+   - File size/type limits (the file's content must match its type),
+     file name preview, link clean-up.
    If everything is fine, the form is sent normally.
    ========================================================================== */
 (function () {
@@ -18,6 +19,18 @@
     oneOf: "Ajoutez un lien vers votre CV ou téléversez un fichier.",
     fileSize: "Le fichier dépasse la taille maximale de {mb} Mo.",
     fileType: "Format non accepté. Utilisez un fichier PDF, Word ou une image."
+  };
+
+  // First bytes of each accepted file type (null = any byte). A file whose
+  // content doesn't match its name (e.g. a program renamed "cv.pdf") is refused.
+  var SIGNATURES = {
+    ".pdf": [0x25, 0x50, 0x44, 0x46], // %PDF
+    ".docx": [0x50, 0x4b, 0x03, 0x04], // Word files are ZIP packages
+    ".jpg": [0xff, 0xd8, 0xff],
+    ".jpeg": [0xff, 0xd8, 0xff],
+    ".png": [0x89, 0x50, 0x4e, 0x47],
+    ".webp": [0x52, 0x49, 0x46, 0x46], // RIFF
+    ".heic": [null, null, null, null, 0x66, 0x74, 0x79, 0x70] // ....ftyp
   };
 
   Array.prototype.forEach.call(document.querySelectorAll("[data-form]"), setUpForm);
@@ -64,10 +77,29 @@
       if (file.size > maxMb * 1024 * 1024) return MESSAGES.fileSize.replace("{mb}", maxMb);
       var accept = (input.getAttribute("accept") || "").toLowerCase().split(",");
       var ext = "." + file.name.split(".").pop().toLowerCase();
-      if (accept[0] && accept.indexOf(ext) === -1) {
+      if ((accept[0] && accept.indexOf(ext) === -1) || input.dataset.badContent) {
         return input.getAttribute("data-type-message") || MESSAGES.fileType;
       }
       return "";
+    }
+
+    // Read the chosen file's first bytes and flag it if they don't match.
+    function checkContent(input) {
+      var file = input.files && input.files[0];
+      delete input.dataset.badContent;
+      var signature = file && SIGNATURES["." + file.name.split(".").pop().toLowerCase()];
+      if (!signature || !window.FileReader) return;
+      var reader = new FileReader();
+      reader.onload = function () {
+        if (input.files[0] !== file) return; // another file was chosen since
+        var bytes = new Uint8Array(reader.result);
+        var matches = signature.every(function (b, i) {
+          return b === null || bytes[i] === b;
+        });
+        if (!matches) input.dataset.badContent = "true";
+        if (submitted) validate();
+      };
+      reader.readAsArrayBuffer(file.slice(0, signature.length));
     }
 
     /* ---- "At least one of" groups --------------------------------------- */
@@ -130,6 +162,7 @@
       var empty = nameEl ? nameEl.textContent : "";
       input.addEventListener("change", function () {
         if (nameEl) nameEl.textContent = input.files.length ? input.files[0].name : empty;
+        checkContent(input);
         if (submitted) validate();
       });
     });

@@ -26,9 +26,7 @@
     <meta property="og:title" content="Carrières | Faites partie de la famille Canmax" />
     <meta property="og:description" content="Joignez une entreprise familiale montréalaise depuis 1991." />
 
-    <script>
-      document.documentElement.className = "js";
-    </script>
+    <script src="../assets/js/js-on.js"></script>
 
     <link rel="preload" href="../assets/fonts/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -319,12 +317,12 @@
             <div class="form__row">
               <div class="field">
                 <label for="prenom">Prénom <span class="field__req" aria-hidden="true">*</span></label>
-                <input id="prenom" name="prenom" type="text" autocomplete="given-name" required />
+                <input id="prenom" name="prenom" type="text" autocomplete="given-name" maxlength="80" required />
                 <p class="field__error" id="prenom-erreur" hidden></p>
               </div>
               <div class="field">
                 <label for="nom">Nom <span class="field__req" aria-hidden="true">*</span></label>
-                <input id="nom" name="nom" type="text" autocomplete="family-name" required />
+                <input id="nom" name="nom" type="text" autocomplete="family-name" maxlength="80" required />
                 <p class="field__error" id="nom-erreur" hidden></p>
               </div>
             </div>
@@ -332,12 +330,12 @@
             <div class="form__row">
               <div class="field">
                 <label for="courriel">Courriel <span class="field__req" aria-hidden="true">*</span></label>
-                <input id="courriel" name="courriel" type="email" autocomplete="email" required />
+                <input id="courriel" name="courriel" type="email" autocomplete="email" maxlength="120" required />
                 <p class="field__error" id="courriel-erreur" hidden></p>
               </div>
               <div class="field">
                 <label for="telephone">Téléphone <span class="field__req" aria-hidden="true">*</span></label>
-                <input id="telephone" name="telephone" type="tel" autocomplete="tel" required />
+                <input id="telephone" name="telephone" type="tel" autocomplete="tel" maxlength="25" required />
                 <p class="field__error" id="telephone-erreur" hidden></p>
               </div>
             </div>
@@ -349,7 +347,7 @@
 
               <div class="field__sub">
                 <label for="cv-lien">Lien vers votre CV</label>
-                <input id="cv-lien" name="cv-lien" type="url" inputmode="url" placeholder="https://" />
+                <input id="cv-lien" name="cv-lien" type="url" inputmode="url" placeholder="https://" maxlength="300" />
               </div>
 
               <p class="form__or" aria-hidden="true">ou</p>
@@ -360,13 +358,14 @@
                     id="cv-fichier"
                     name="cv-fichier"
                     type="file"
-                    accept=".pdf,.doc,.docx,.odt,.jpg,.jpeg,.png"
+                    accept=".pdf,.docx,.jpg,.jpeg,.png"
                     data-max-mb="8"
+                    data-type-message="Format non accepté. Utilisez un fichier PDF, Word (.docx) ou une photo JPG ou PNG."
                   />
                   <span class="file__btn">Téléverser un fichier</span>
                   <span class="file__name" data-file-name>Aucun fichier choisi</span>
                 </label>
-                <p class="field__hint">PDF, Word ou image, 8 Mo maximum.</p>
+                <p class="field__hint">PDF, Word (.docx) ou photo JPG/PNG, 8 Mo maximum.</p>
               </div>
 
               <p class="field__error" id="cv-erreur" hidden></p>

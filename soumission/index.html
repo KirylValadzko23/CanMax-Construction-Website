@@ -26,9 +26,7 @@
     <meta property="og:title" content="Soumission sans frais | Canmax Construction" />
     <meta property="og:description" content="Parlez-nous de votre projet : soumission sans frais et sans engagement." />
 
-    <script>
-      document.documentElement.className = "js";
-    </script>
+    <script src="../assets/js/js-on.js"></script>
 
     <link rel="preload" href="../assets/fonts/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -223,12 +221,12 @@
                 <div class="form__row">
                   <div class="field">
                     <label for="nom">Nom <span class="field__req" aria-hidden="true">*</span></label>
-                    <input id="nom" name="nom" type="text" autocomplete="name" required />
+                    <input id="nom" name="nom" type="text" autocomplete="name" maxlength="80" required />
                     <p class="field__error" id="nom-erreur" hidden></p>
                   </div>
                   <div class="field">
                     <label for="telephone">Téléphone <span class="field__req" aria-hidden="true">*</span></label>
-                    <input id="telephone" name="telephone" type="tel" autocomplete="tel" required />
+                    <input id="telephone" name="telephone" type="tel" autocomplete="tel" maxlength="25" required />
                     <p class="field__error" id="telephone-erreur" hidden></p>
                   </div>
                 </div>
@@ -263,6 +261,7 @@
                     id="description"
                     name="description"
                     rows="5"
+                    maxlength="3000"
                     placeholder="Ex. : rénovation complète d'une salle de bain dans un condo à Montréal."
                   ></textarea>
                   <p class="field__error" id="description-erreur" hidden></p>
